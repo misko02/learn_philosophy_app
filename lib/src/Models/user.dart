@@ -1,4 +1,4 @@
-import 'package:learn_philosophy_app/src/Models/statistics.dart';
+import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 
 class User{
   String userId;

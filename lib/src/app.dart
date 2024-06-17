@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_philosophy_app/src/Views/topic_view.dart';
 
+import 'Models/topic/topic.dart';
 import 'Views/main_view.dart';
 
 class MyApp extends ConsumerWidget {
@@ -38,8 +39,8 @@ class MyApp extends ConsumerWidget {
                   case '/':
                     return  MainView();
                   case '/topic/':
-                    final index = routeSettings.arguments??0;
-                    return  TopicView(index as int);
+                    final topic = routeSettings.arguments as Topic;
+                    return  TopicView(topic);
                   default:
                     return  MainView();
                 }

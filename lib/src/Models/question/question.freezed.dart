@@ -20,6 +20,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Question {
+  int get index => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   List<String> get answers => throw _privateConstructorUsedError;
   int get correctAnswerIndex => throw _privateConstructorUsedError;
@@ -35,7 +36,11 @@ abstract class $QuestionCopyWith<$Res> {
   factory $QuestionCopyWith(Question value, $Res Function(Question) then) =
       _$QuestionCopyWithImpl<$Res, Question>;
   @useResult
-  $Res call({String content, List<String> answers, int correctAnswerIndex});
+  $Res call(
+      {int index,
+      String content,
+      List<String> answers,
+      int correctAnswerIndex});
 }
 
 /// @nodoc
@@ -51,11 +56,16 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? index = null,
     Object? content = null,
     Object? answers = null,
     Object? correctAnswerIndex = null,
   }) {
     return _then(_value.copyWith(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -80,7 +90,11 @@ abstract class _$$QuestionImplCopyWith<$Res>
       __$$QuestionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String content, List<String> answers, int correctAnswerIndex});
+  $Res call(
+      {int index,
+      String content,
+      List<String> answers,
+      int correctAnswerIndex});
 }
 
 /// @nodoc
@@ -94,11 +108,16 @@ class __$$QuestionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? index = null,
     Object? content = null,
     Object? answers = null,
     Object? correctAnswerIndex = null,
   }) {
     return _then(_$QuestionImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -119,7 +138,8 @@ class __$$QuestionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuestionImpl implements _Question {
   const _$QuestionImpl(
-      {required this.content,
+      {required this.index,
+      required this.content,
       required final List<String> answers,
       required this.correctAnswerIndex})
       : _answers = answers;
@@ -127,6 +147,8 @@ class _$QuestionImpl implements _Question {
   factory _$QuestionImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionImplFromJson(json);
 
+  @override
+  final int index;
   @override
   final String content;
   final List<String> _answers;
@@ -142,7 +164,7 @@ class _$QuestionImpl implements _Question {
 
   @override
   String toString() {
-    return 'Question(content: $content, answers: $answers, correctAnswerIndex: $correctAnswerIndex)';
+    return 'Question(index: $index, content: $content, answers: $answers, correctAnswerIndex: $correctAnswerIndex)';
   }
 
   @override
@@ -150,6 +172,7 @@ class _$QuestionImpl implements _Question {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionImpl &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.content, content) || other.content == content) &&
             const DeepCollectionEquality().equals(other._answers, _answers) &&
             (identical(other.correctAnswerIndex, correctAnswerIndex) ||
@@ -158,7 +181,7 @@ class _$QuestionImpl implements _Question {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, content,
+  int get hashCode => Object.hash(runtimeType, index, content,
       const DeepCollectionEquality().hash(_answers), correctAnswerIndex);
 
   @JsonKey(ignore: true)
@@ -177,13 +200,16 @@ class _$QuestionImpl implements _Question {
 
 abstract class _Question implements Question {
   const factory _Question(
-      {required final String content,
+      {required final int index,
+      required final String content,
       required final List<String> answers,
       required final int correctAnswerIndex}) = _$QuestionImpl;
 
   factory _Question.fromJson(Map<String, dynamic> json) =
       _$QuestionImpl.fromJson;
 
+  @override
+  int get index;
   @override
   String get content;
   @override

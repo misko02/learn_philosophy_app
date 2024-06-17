@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_philosophy_app/src/Models/statistics.dart';
+import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 
 
 class StatisticsView extends ConsumerStatefulWidget {

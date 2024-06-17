@@ -20,6 +20,7 @@ Site _$SiteFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Site {
+  int get index => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
@@ -33,7 +34,7 @@ abstract class $SiteCopyWith<$Res> {
   factory $SiteCopyWith(Site value, $Res Function(Site) then) =
       _$SiteCopyWithImpl<$Res, Site>;
   @useResult
-  $Res call({String title, String content});
+  $Res call({int index, String title, String content});
 }
 
 /// @nodoc
@@ -49,10 +50,15 @@ class _$SiteCopyWithImpl<$Res, $Val extends Site>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? index = null,
     Object? title = null,
     Object? content = null,
   }) {
     return _then(_value.copyWith(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -72,7 +78,7 @@ abstract class _$$SiteImplCopyWith<$Res> implements $SiteCopyWith<$Res> {
       __$$SiteImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String content});
+  $Res call({int index, String title, String content});
 }
 
 /// @nodoc
@@ -85,10 +91,15 @@ class __$$SiteImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? index = null,
     Object? title = null,
     Object? content = null,
   }) {
     return _then(_$SiteImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -104,11 +115,13 @@ class __$$SiteImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SiteImpl implements _Site {
-  _$SiteImpl({required this.title, required this.content});
+  _$SiteImpl({required this.index, required this.title, required this.content});
 
   factory _$SiteImpl.fromJson(Map<String, dynamic> json) =>
       _$$SiteImplFromJson(json);
 
+  @override
+  final int index;
   @override
   final String title;
   @override
@@ -116,7 +129,7 @@ class _$SiteImpl implements _Site {
 
   @override
   String toString() {
-    return 'Site(title: $title, content: $content)';
+    return 'Site(index: $index, title: $title, content: $content)';
   }
 
   @override
@@ -124,13 +137,14 @@ class _$SiteImpl implements _Site {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SiteImpl &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, content);
+  int get hashCode => Object.hash(runtimeType, index, title, content);
 
   @JsonKey(ignore: true)
   @override
@@ -147,11 +161,15 @@ class _$SiteImpl implements _Site {
 }
 
 abstract class _Site implements Site {
-  factory _Site({required final String title, required final String content}) =
-      _$SiteImpl;
+  factory _Site(
+      {required final int index,
+      required final String title,
+      required final String content}) = _$SiteImpl;
 
   factory _Site.fromJson(Map<String, dynamic> json) = _$SiteImpl.fromJson;
 
+  @override
+  int get index;
   @override
   String get title;
   @override

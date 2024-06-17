@@ -1,8 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:learn_philosophy_app/src/Models/quiz.dart';
 
-import 'question.dart';
-import 'site.dart';
+import 'package:learn_philosophy_app/src/Models/quiz/quiz.dart';
+import '../site/site.dart';
 
 
 part 'topic.freezed.dart';

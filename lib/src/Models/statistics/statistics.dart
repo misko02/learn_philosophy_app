@@ -10,6 +10,7 @@ class Statistics with _$Statistics{
     required int topicsFinished,
     required int questionsAnswered
   }) = _Statistics;
+  
 
   factory Statistics.fromJson(Map<String, Object?> json) => _$StatisticsFromJson(json);
 }
