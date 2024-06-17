@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_philosophy_app/src/Services/api_service.dart';
 
 import '../Models/topic.dart';
 
@@ -7,16 +8,26 @@ class TopicListView extends ConsumerStatefulWidget {
   const TopicListView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _TopicListViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => 
+
+  _TopicListViewState();
 }
 
 class _TopicListViewState extends ConsumerState<TopicListView> {
 
-  final topics = [
-    const Topic(title:"Topic 1", description: "This is the first topic"),
-    const Topic(title: "Topic 2", description: "This is the second topic"),
-    const Topic(title: "Topic 3", description: "This is the third topic")
-  ];
+  ApiService apiService = ApiService();
+  late List<Topic> topics = [];
+  
+  void getData() async {
+    topics = await apiService.getTopics();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
