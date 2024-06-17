@@ -2,7 +2,7 @@ class QuizResult{
   int correctAnswers;
   int wrongAnswers;
 
-  QuizResult(this.correctAnswers,this.wrongAnswers);
+  QuizResult(this.correctAnswers,this.wrongAnswers,);
 
   factory QuizResult.fromJson(Map<String, Object?> json) {
     return QuizResult(

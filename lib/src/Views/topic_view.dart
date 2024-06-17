@@ -6,15 +6,14 @@ import '../Models/topic/topic.dart';
 
  class TopicView extends ConsumerStatefulWidget {
   final Topic topic;
-  int currentSiteIndex = 0;
-  TopicView(this.topic,{super.key});
+  const TopicView(this.topic,{super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _TopicViewState();
 }
 
 class _TopicViewState extends ConsumerState<TopicView> {
-
+  int currentSiteIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +35,9 @@ class _TopicViewState extends ConsumerState<TopicView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text (widget.topic.sites[widget.currentSiteIndex].title, style: const TextStyle(fontSize: 24)),
+            Text (widget.topic.sites[currentSiteIndex].title, style: const TextStyle(fontSize: 24)),
             Center(
-              child: Text(widget.topic.sites[widget.currentSiteIndex].content),
+              child: Text(widget.topic.sites[currentSiteIndex].content),
             ),
           ],
         ),
@@ -50,9 +49,9 @@ class _TopicViewState extends ConsumerState<TopicView> {
             IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                if (widget.currentSiteIndex > 0) {
+                if (currentSiteIndex > 0) {
                   setState((){
-                    widget.currentSiteIndex--;
+                    currentSiteIndex--;
                   });
                 }
               },
@@ -60,6 +59,8 @@ class _TopicViewState extends ConsumerState<TopicView> {
             TextButton(
               child: const Text("Try Yourself"),
               onPressed: () {
+                print(widget.topic.quiz.title);
+                Navigator.pushNamed(context, '/quiz/', arguments: widget.topic.quiz);
                 setState(() {
                 });
               },
@@ -67,9 +68,9 @@ class _TopicViewState extends ConsumerState<TopicView> {
             IconButton(
               icon: const Icon(Icons.arrow_forward),
               onPressed: () {
-                if ( widget.currentSiteIndex < widget.topic.sites.length - 1) {
+                if ( currentSiteIndex < widget.topic.sites.length - 1) {
                   setState(() {
-                    widget.currentSiteIndex++;
+                    currentSiteIndex++;
                   });
                 }
               },

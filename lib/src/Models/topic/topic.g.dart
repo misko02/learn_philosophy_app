@@ -10,7 +10,7 @@ _$TopicImpl _$$TopicImplFromJson(Map<String, dynamic> json) => _$TopicImpl(
       title: json['title'] as String,
       description: json['description'] as String,
       quiz: json['quiz'] == null
-          ? null
+          ? const Quiz(title: "")
           : Quiz.fromJson(json['quiz'] as Map<String, dynamic>),
       sites: (json['sites'] as List<dynamic>?)
               ?.map((e) => Site.fromJson(e as Map<String, dynamic>))

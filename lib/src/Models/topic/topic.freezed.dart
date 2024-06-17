@@ -22,7 +22,7 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
 mixin _$Topic {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  Quiz? get quiz => throw _privateConstructorUsedError;
+  Quiz get quiz => throw _privateConstructorUsedError;
   List<Site> get sites => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,9 +35,9 @@ abstract class $TopicCopyWith<$Res> {
   factory $TopicCopyWith(Topic value, $Res Function(Topic) then) =
       _$TopicCopyWithImpl<$Res, Topic>;
   @useResult
-  $Res call({String title, String description, Quiz? quiz, List<Site> sites});
+  $Res call({String title, String description, Quiz quiz, List<Site> sites});
 
-  $QuizCopyWith<$Res>? get quiz;
+  $QuizCopyWith<$Res> get quiz;
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
   $Res call({
     Object? title = null,
     Object? description = null,
-    Object? quiz = freezed,
+    Object? quiz = null,
     Object? sites = null,
   }) {
     return _then(_value.copyWith(
@@ -67,10 +67,10 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      quiz: freezed == quiz
+      quiz: null == quiz
           ? _value.quiz
           : quiz // ignore: cast_nullable_to_non_nullable
-              as Quiz?,
+              as Quiz,
       sites: null == sites
           ? _value.sites
           : sites // ignore: cast_nullable_to_non_nullable
@@ -80,12 +80,8 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
 
   @override
   @pragma('vm:prefer-inline')
-  $QuizCopyWith<$Res>? get quiz {
-    if (_value.quiz == null) {
-      return null;
-    }
-
-    return $QuizCopyWith<$Res>(_value.quiz!, (value) {
+  $QuizCopyWith<$Res> get quiz {
+    return $QuizCopyWith<$Res>(_value.quiz, (value) {
       return _then(_value.copyWith(quiz: value) as $Val);
     });
   }
@@ -98,10 +94,10 @@ abstract class _$$TopicImplCopyWith<$Res> implements $TopicCopyWith<$Res> {
       __$$TopicImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description, Quiz? quiz, List<Site> sites});
+  $Res call({String title, String description, Quiz quiz, List<Site> sites});
 
   @override
-  $QuizCopyWith<$Res>? get quiz;
+  $QuizCopyWith<$Res> get quiz;
 }
 
 /// @nodoc
@@ -117,7 +113,7 @@ class __$$TopicImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? description = null,
-    Object? quiz = freezed,
+    Object? quiz = null,
     Object? sites = null,
   }) {
     return _then(_$TopicImpl(
@@ -129,10 +125,10 @@ class __$$TopicImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      quiz: freezed == quiz
+      quiz: null == quiz
           ? _value.quiz
           : quiz // ignore: cast_nullable_to_non_nullable
-              as Quiz?,
+              as Quiz,
       sites: null == sites
           ? _value._sites
           : sites // ignore: cast_nullable_to_non_nullable
@@ -147,7 +143,7 @@ class _$TopicImpl implements _Topic {
   const _$TopicImpl(
       {required this.title,
       required this.description,
-      this.quiz,
+      this.quiz = const Quiz(title: ""),
       final List<Site> sites = const []})
       : _sites = sites;
 
@@ -159,7 +155,8 @@ class _$TopicImpl implements _Topic {
   @override
   final String description;
   @override
-  final Quiz? quiz;
+  @JsonKey()
+  final Quiz quiz;
   final List<Site> _sites;
   @override
   @JsonKey()
@@ -209,7 +206,7 @@ abstract class _Topic implements Topic {
   const factory _Topic(
       {required final String title,
       required final String description,
-      final Quiz? quiz,
+      final Quiz quiz,
       final List<Site> sites}) = _$TopicImpl;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$TopicImpl.fromJson;
@@ -219,7 +216,7 @@ abstract class _Topic implements Topic {
   @override
   String get description;
   @override
-  Quiz? get quiz;
+  Quiz get quiz;
   @override
   List<Site> get sites;
   @override

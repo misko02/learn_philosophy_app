@@ -16,5 +16,6 @@ class Quiz with _$Quiz{
     QuizResult? result
   }) = _Quiz;
 
+
   factory Quiz.fromJson(Map<String, Object?> json) => _$QuizFromJson(json);
 }

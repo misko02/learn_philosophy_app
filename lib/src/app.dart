@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_philosophy_app/src/Views/quiz_summary_view.dart';
 import 'package:learn_philosophy_app/src/Views/topic_view.dart';
 
+import 'Models/quiz/quiz.dart';
+import 'Models/quiz_result.dart';
 import 'Models/topic/topic.dart';
 import 'Views/main_view.dart';
+import 'Views/quiz_view.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({
@@ -39,8 +43,15 @@ class MyApp extends ConsumerWidget {
                   case '/':
                     return  MainView();
                   case '/topic/':
-                    final topic = routeSettings.arguments as Topic;
-                    return  TopicView(topic);
+                    final topic = routeSettings.arguments ?? const Topic(title: "", description: "");
+                    return  TopicView(topic as Topic);
+                  case '/quiz/':
+                    final quiz = routeSettings.arguments ?? const Quiz(title: "");
+                    print(quiz);
+                    return  QuizView(quiz as Quiz);
+                  case '/summary/':
+                    final result = routeSettings.arguments ?? QuizResult(0, 0);
+                    return QuizSummaryView(result as QuizResult);
                   default:
                     return  MainView();
                 }

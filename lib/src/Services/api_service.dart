@@ -10,14 +10,14 @@ class ApiService {
   static Future<List<Topic>> getTopics() async {
     late List<Topic> topics = [];
     try{
-      final response = await http.get(Uri.parse('$baseUrl/topics'));
+      final response = await http.get(Uri.https(baseUrl,'/topics'));
       if (response.statusCode == 200) {
         List<dynamic> body = jsonDecode(response.body);
         topics = body.map((dynamic item) => Topic.fromJson(item)).toList();
       } else {
         throw "Can't get topics.";
       }
-  }
+    }
      catch (e) {
       topics = SeedData.seedTopics;
       print(e.toString());

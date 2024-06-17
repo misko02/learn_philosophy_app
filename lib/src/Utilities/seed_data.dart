@@ -1,3 +1,4 @@
+import 'package:learn_philosophy_app/src/Models/quiz_result.dart';
 import 'package:learn_philosophy_app/src/Models/topic/topic.dart';
 
 import '../Models/question/question.dart';
@@ -26,10 +27,10 @@ class SeedData {
           content: 'Socrates was a philosopher who lived in Athens in the 5th century BC. He was the first to ask questions about the nature of the world and the universe. He is considered the first philosopher in the Western tradition.'
         ),
       ],
-      quiz: const Quiz(
+      quiz:  Quiz(
         title: 'Introduction to Philosophy Quiz',
         questions: [
-          Question(
+          const Question(
             index: 0,
             content: 'Who was the first philosopher?',
             answers: [
@@ -40,7 +41,7 @@ class SeedData {
             ], 
             correctAnswerIndex: 0
           ),
-          Question(
+          const Question(
             index: 1,
             content: 'Who were the Presocratics?',
             answers: [
@@ -51,7 +52,9 @@ class SeedData {
             ],
             correctAnswerIndex: 0
           ),
+          
         ],
+        result: QuizResult(0,0),
       )
     ),
     Topic(
@@ -74,10 +77,10 @@ class SeedData {
           content: 'Rationalism is a philosophical theory that states that knowledge comes from reason or thinking. It is one of several views of epistemology, along with empiricism and skepticism.'
         ),
       ],
-      quiz: const Quiz(
+      quiz:  Quiz(
         title:'Epistemology Quiz',
         questions: [
-          Question(
+          const Question(
             index: 0,
             content: 'Who are some of the most known idealists?',
             answers: [
@@ -88,7 +91,7 @@ class SeedData {
             ],
             correctAnswerIndex: 0
           ),
-          Question(
+          const Question(
             index: 1,
             content: 'What is empiricism?',
             answers: [
@@ -100,6 +103,7 @@ class SeedData {
             correctAnswerIndex: 0
           ),
         ],
+        result: QuizResult(0,0),   
          )
     ),
     Topic(
@@ -122,10 +126,10 @@ class SeedData {
           content: 'Most philosophers believe that there is only one kind of substance in the universe. This view is called monism. Monism is the view that there is only one kind of substance in the universe. It is one of several views of metaphysics, along with dualism and pluralism.'
         ),
       ],
-      quiz: const Quiz(
+      quiz: Quiz(
         title: 'Metaphysics Quiz',
         questions: [
-          Question(
+          const Question(
             index: 0,
             content: 'What is materialism?',
             answers: [
@@ -136,7 +140,7 @@ class SeedData {
             ],
             correctAnswerIndex: 2
           ),
-          Question(
+          const Question(
             index: 1,
             content: 'What is dualism?',
             answers: [
@@ -146,7 +150,9 @@ class SeedData {
               "The idea that there are five kinds of substances: material, immaterial, spiritual, mental, and physical"
             ],
             correctAnswerIndex: 1
-          ),],
+          ),
+          ],
+        result: QuizResult(0,0),
          )
     ),
     Topic(
@@ -236,5 +242,4 @@ class SeedData {
       )
     ),
   ];
-
 }

@@ -12,7 +12,8 @@ class Topic with _$Topic{
   const factory Topic({
     required String title,
     required String description,
-    Quiz? quiz,
+    @Default(Quiz(title: ""))
+    Quiz quiz,
     @Default([])
     List<Site> sites 
   }) = _Topic;
