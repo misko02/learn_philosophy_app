@@ -8,12 +8,15 @@ namespace PhilosophyLearnAppAPI.Models
     {
         [Key, ForeignKey("Quiz")]
         public int QuizId{ get; init; }
+        required public int Index { get; init; }
 
         [Required]
         public string Content { get; init; } = string.Empty;
 
         [Required]
         public List<string> Answers { get; init; } = [];
+
+        [Required]
         public int CorrectAnswerIndex { get; init; }
     }
 }

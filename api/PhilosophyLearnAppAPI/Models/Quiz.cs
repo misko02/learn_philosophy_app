@@ -11,7 +11,7 @@ namespace PhilosophyLearnAppAPI.Models
         [Required]
         [MaxLength(50)]
         public string Title { get; set; } = string.Empty;
-
+        public string Description { get; set; } = string.Empty;
 
         [ForeignKey("Topic")]
         public int TopicId { get; set; }

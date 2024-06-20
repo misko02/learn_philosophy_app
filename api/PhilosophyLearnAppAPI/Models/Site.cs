@@ -7,7 +7,7 @@ namespace PhilosophyLearnAppAPI.Models
     public record Site
     {
         [Key, ForeignKey("Topic")]
-        public int Id { get; init; }
+        public int Index { get; init; }
         public string Title { get; init; } = string.Empty;
         public string Content { get; init; } = string.Empty;
     }
