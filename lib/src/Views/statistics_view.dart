@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
+import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
+
 
 
 class StatisticsView extends ConsumerStatefulWidget {
@@ -11,15 +13,10 @@ class StatisticsView extends ConsumerStatefulWidget {
 }
 
 class _StatisticsViewState extends ConsumerState<StatisticsView> {
-  Statistics placeholder = const Statistics(
-    quizesTaken: 10,
-    quizesPassed: 5,
-    questionsAnswered: 100,
-    topicsFinished: 3
-  );
-
+  
   @override
   Widget build(BuildContext context) {
+    Statistics placeholder = ref.watch(statisticsProvider);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,17 +29,17 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
             children: [
               Column(
                 children: [
-                  const Text("Quizes attempts", style: TextStyle(fontSize: 18),),
+                  const Text("Quizes attempts", style: TextStyle(fontSize: 18, color: Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.quizesTaken.toString(), style: const TextStyle(fontSize: 18),)
+                  Text(placeholder.quizesTaken.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
                 ],
               ),
               const SizedBox(width: 20),
               Column(
                 children: [
-                  const Text("Quizes passed", style: TextStyle(fontSize: 18),),
+                  const Text("Quizes passed", style: TextStyle(fontSize: 18, color: Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.quizesPassed.toString(), style: const TextStyle(fontSize: 18),)
+                  Text(placeholder.quizesPassed.toString(), style: const TextStyle(fontSize: 18, color:Colors.white),)
                 ],
               ),
             ],
@@ -53,19 +50,40 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
             children: [
               Column(
                 children: [
-                  const Text("Questions answered", style: TextStyle(fontSize: 18),),
+                  const Text("Questions answered", style: TextStyle(fontSize: 18, color:Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.questionsAnswered.toString(), style: const TextStyle(fontSize: 18),)
+                  Text(placeholder.questionsAnswered.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
                 ],
               ),
               const SizedBox(width: 20),
               Column(
                 children: [
-                  const Text("Topics finished", style: TextStyle(fontSize: 18),),
+                  const Text("Topics finished", style: TextStyle(fontSize: 18, color:Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.topicsFinished.toString(), style: const TextStyle(fontSize: 18),)
+                  Text(placeholder.topicsFinished.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
                 ],
               ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Column(
+              children: [
+                const Text("Correct answers", style: TextStyle(fontSize: 18, color: Colors.white),),
+                const SizedBox(height: 10),
+                Text(placeholder.correctAnswers.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+              ],
+            ),
+            const SizedBox(width: 20),
+            Column(
+              children: [
+                const Text("Wrong answers", style: TextStyle(fontSize: 18, color: Colors.white),),
+                const SizedBox(height: 10),
+                Text(placeholder.wrongAnswers.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+              ],
+            ),
             ],
           ),
         ],

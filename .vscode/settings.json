@@ -16,7 +16,8 @@
         "macos": true,
         "web": true,
         "windows": true,
-        ".gitignore": true
+        ".gitignore": true,
+        "api": true
     },
     "hide-files.files": [
         ".dart_tool",
@@ -29,6 +30,7 @@
         "macos",
         "web",
         "windows",
-        ".gitignore"
+        ".gitignore",
+        "api"
     ]
 }

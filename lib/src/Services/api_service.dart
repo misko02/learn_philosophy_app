@@ -5,12 +5,12 @@ import 'package:learn_philosophy_app/src/Utilities/seed_data.dart';
 import '../Models/topic/topic.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://localhost:7146/api';
+  static const String baseUrl = 'https://localhost/api';
  
   static Future<List<Topic>> getTopics() async {
     late List<Topic> topics = [];
     try{
-      final response = await http.get(Uri.https(baseUrl,'/topics'));
+      final response = await http.get(Uri.parse('$baseUrl/topics'));
       if (response.statusCode == 200) {
         List<dynamic> body = jsonDecode(response.body);
         topics = body.map((dynamic item) => Topic.fromJson(item)).toList();

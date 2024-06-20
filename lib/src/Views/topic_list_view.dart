@@ -34,8 +34,8 @@ class _TopicListViewState extends ConsumerState<TopicListView> {
       itemCount: topics.length,
       itemBuilder: (context, index) {
       return ListTile(
-        title: Text(topics[index].title),
-        subtitle: Text(topics[index].description),
+        title: Text(topics[index].title, style: const TextStyle(fontSize: 24, color: Colors.white)),
+        subtitle: Text(topics[index].description, style: const TextStyle(fontSize: 18, color: Colors.white)),
         onTap: () {
           Navigator.pushNamed(context, '/topic/', arguments: topics[index]);
         },

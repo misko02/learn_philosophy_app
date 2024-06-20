@@ -47,7 +47,6 @@ class MyApp extends ConsumerWidget {
                     return  TopicView(topic as Topic);
                   case '/quiz/':
                     final quiz = routeSettings.arguments ?? const Quiz(title: "");
-                    print(quiz);
                     return  QuizView(quiz as Quiz);
                   case '/summary/':
                     final result = routeSettings.arguments ?? QuizResult(0, 0);

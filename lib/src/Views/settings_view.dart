@@ -23,6 +23,12 @@ class SettingsView extends ConsumerWidget {
               leading: const Icon(Icons.format_paint),
               title: const Text('Dark theme'),
             ),
+            SettingsTile(
+              leading: const Icon(Icons.notifications),
+              title: const Text('Notifications'),
+              value: const Text('On'),
+              onPressed: (context) {},
+            ),
           ],
         ),
       ],

@@ -8,7 +8,9 @@ class Statistics with _$Statistics{
     required int quizesTaken,
     required int quizesPassed,
     required int topicsFinished,
-    required int questionsAnswered
+    required int questionsAnswered,
+    required int correctAnswers,
+    required int wrongAnswers
   }) = _Statistics;
   
 

@@ -24,6 +24,8 @@ mixin _$Statistics {
   int get quizesPassed => throw _privateConstructorUsedError;
   int get topicsFinished => throw _privateConstructorUsedError;
   int get questionsAnswered => throw _privateConstructorUsedError;
+  int get correctAnswers => throw _privateConstructorUsedError;
+  int get wrongAnswers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,9 @@ abstract class $StatisticsCopyWith<$Res> {
       {int quizesTaken,
       int quizesPassed,
       int topicsFinished,
-      int questionsAnswered});
+      int questionsAnswered,
+      int correctAnswers,
+      int wrongAnswers});
 }
 
 /// @nodoc
@@ -61,6 +65,8 @@ class _$StatisticsCopyWithImpl<$Res, $Val extends Statistics>
     Object? quizesPassed = null,
     Object? topicsFinished = null,
     Object? questionsAnswered = null,
+    Object? correctAnswers = null,
+    Object? wrongAnswers = null,
   }) {
     return _then(_value.copyWith(
       quizesTaken: null == quizesTaken
@@ -79,6 +85,14 @@ class _$StatisticsCopyWithImpl<$Res, $Val extends Statistics>
           ? _value.questionsAnswered
           : questionsAnswered // ignore: cast_nullable_to_non_nullable
               as int,
+      correctAnswers: null == correctAnswers
+          ? _value.correctAnswers
+          : correctAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
+      wrongAnswers: null == wrongAnswers
+          ? _value.wrongAnswers
+          : wrongAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -95,7 +109,9 @@ abstract class _$$StatisticsImplCopyWith<$Res>
       {int quizesTaken,
       int quizesPassed,
       int topicsFinished,
-      int questionsAnswered});
+      int questionsAnswered,
+      int correctAnswers,
+      int wrongAnswers});
 }
 
 /// @nodoc
@@ -113,6 +129,8 @@ class __$$StatisticsImplCopyWithImpl<$Res>
     Object? quizesPassed = null,
     Object? topicsFinished = null,
     Object? questionsAnswered = null,
+    Object? correctAnswers = null,
+    Object? wrongAnswers = null,
   }) {
     return _then(_$StatisticsImpl(
       quizesTaken: null == quizesTaken
@@ -131,6 +149,14 @@ class __$$StatisticsImplCopyWithImpl<$Res>
           ? _value.questionsAnswered
           : questionsAnswered // ignore: cast_nullable_to_non_nullable
               as int,
+      correctAnswers: null == correctAnswers
+          ? _value.correctAnswers
+          : correctAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
+      wrongAnswers: null == wrongAnswers
+          ? _value.wrongAnswers
+          : wrongAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -142,7 +168,9 @@ class _$StatisticsImpl implements _Statistics {
       {required this.quizesTaken,
       required this.quizesPassed,
       required this.topicsFinished,
-      required this.questionsAnswered});
+      required this.questionsAnswered,
+      required this.correctAnswers,
+      required this.wrongAnswers});
 
   factory _$StatisticsImpl.fromJson(Map<String, dynamic> json) =>
       _$$StatisticsImplFromJson(json);
@@ -155,10 +183,14 @@ class _$StatisticsImpl implements _Statistics {
   final int topicsFinished;
   @override
   final int questionsAnswered;
+  @override
+  final int correctAnswers;
+  @override
+  final int wrongAnswers;
 
   @override
   String toString() {
-    return 'Statistics(quizesTaken: $quizesTaken, quizesPassed: $quizesPassed, topicsFinished: $topicsFinished, questionsAnswered: $questionsAnswered)';
+    return 'Statistics(quizesTaken: $quizesTaken, quizesPassed: $quizesPassed, topicsFinished: $topicsFinished, questionsAnswered: $questionsAnswered, correctAnswers: $correctAnswers, wrongAnswers: $wrongAnswers)';
   }
 
   @override
@@ -173,13 +205,17 @@ class _$StatisticsImpl implements _Statistics {
             (identical(other.topicsFinished, topicsFinished) ||
                 other.topicsFinished == topicsFinished) &&
             (identical(other.questionsAnswered, questionsAnswered) ||
-                other.questionsAnswered == questionsAnswered));
+                other.questionsAnswered == questionsAnswered) &&
+            (identical(other.correctAnswers, correctAnswers) ||
+                other.correctAnswers == correctAnswers) &&
+            (identical(other.wrongAnswers, wrongAnswers) ||
+                other.wrongAnswers == wrongAnswers));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, quizesTaken, quizesPassed,
-      topicsFinished, questionsAnswered);
+      topicsFinished, questionsAnswered, correctAnswers, wrongAnswers);
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +236,9 @@ abstract class _Statistics implements Statistics {
       {required final int quizesTaken,
       required final int quizesPassed,
       required final int topicsFinished,
-      required final int questionsAnswered}) = _$StatisticsImpl;
+      required final int questionsAnswered,
+      required final int correctAnswers,
+      required final int wrongAnswers}) = _$StatisticsImpl;
 
   factory _Statistics.fromJson(Map<String, dynamic> json) =
       _$StatisticsImpl.fromJson;
@@ -213,6 +251,10 @@ abstract class _Statistics implements Statistics {
   int get topicsFinished;
   @override
   int get questionsAnswered;
+  @override
+  int get correctAnswers;
+  @override
+  int get wrongAnswers;
   @override
   @JsonKey(ignore: true)
   _$$StatisticsImplCopyWith<_$StatisticsImpl> get copyWith =>

@@ -12,6 +12,8 @@ _$StatisticsImpl _$$StatisticsImplFromJson(Map<String, dynamic> json) =>
       quizesPassed: (json['quizesPassed'] as num).toInt(),
       topicsFinished: (json['topicsFinished'] as num).toInt(),
       questionsAnswered: (json['questionsAnswered'] as num).toInt(),
+      correctAnswers: (json['correctAnswers'] as num).toInt(),
+      wrongAnswers: (json['wrongAnswers'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$StatisticsImplToJson(_$StatisticsImpl instance) =>
@@ -20,4 +22,6 @@ Map<String, dynamic> _$$StatisticsImplToJson(_$StatisticsImpl instance) =>
       'quizesPassed': instance.quizesPassed,
       'topicsFinished': instance.topicsFinished,
       'questionsAnswered': instance.questionsAnswered,
+      'correctAnswers': instance.correctAnswers,
+      'wrongAnswers': instance.wrongAnswers,
     };
