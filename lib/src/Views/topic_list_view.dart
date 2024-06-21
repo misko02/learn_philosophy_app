@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
 import 'package:learn_philosophy_app/src/Services/api_service.dart';
 
 import '../Models/topic/topic.dart';
@@ -37,7 +38,8 @@ class _TopicListViewState extends ConsumerState<TopicListView> {
         title: Text(topics[index].title, style: const TextStyle(fontSize: 24, color: Colors.white)),
         subtitle: Text(topics[index].description, style: const TextStyle(fontSize: 18, color: Colors.white)),
         onTap: () {
-          Navigator.pushNamed(context, '/topic/', arguments: topics[index]);
+          ref.read(topicProvider.notifier).state = topics[index];
+          Navigator.pushNamed(context, '/topic/');
         },
       );
     });

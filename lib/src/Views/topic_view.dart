@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
+import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
 
-import '../Models/topic/topic.dart';
+import '../Providers/quiz_provider.dart';
+
 
  class TopicView extends ConsumerStatefulWidget {
-  final Topic topic;
-  const TopicView(this.topic,{super.key});
-
+  const TopicView({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _TopicViewState();
 }
@@ -17,6 +17,7 @@ class _TopicViewState extends ConsumerState<TopicView> {
   int currentSiteIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final topic = ref.read(topicProvider.notifier).state;
     return Scaffold(
       appBar: AppBar(
         leading: ButtonBar(
@@ -29,16 +30,16 @@ class _TopicViewState extends ConsumerState<TopicView> {
             ),
           ],
         ),
-        title: Text(widget.topic.title),
+        title: Text(topic.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text (widget.topic.sites[currentSiteIndex].title, style: const TextStyle(fontSize: 24)),
+            Text (topic.sites[currentSiteIndex].title, style: const TextStyle(fontSize: 24)),
             Center(
-              child: Text(widget.topic.sites[currentSiteIndex].content),
+              child: Text(topic.sites[currentSiteIndex].content),
             ),
           ],
         ),
@@ -60,9 +61,9 @@ class _TopicViewState extends ConsumerState<TopicView> {
             TextButton(
               child: const Text("Try Yourself"),
               onPressed: () {
-                print(widget.topic.quiz.title);
                 ref.read(statisticsProvider.notifier).takeQuiz();
-                Navigator.pushNamed(context, '/quiz/', arguments: widget.topic.quiz);
+                ref.read(quizProvider.notifier).state = topic.quiz;
+                Navigator.pushNamed(context, '/quiz/');
                 setState(() {
                 });
               },
@@ -70,11 +71,11 @@ class _TopicViewState extends ConsumerState<TopicView> {
             IconButton(
               icon: const Icon(Icons.arrow_forward),
               onPressed: () {
-                if ( currentSiteIndex < widget.topic.sites.length - 1) {
+                if ( currentSiteIndex < topic.sites.length - 1) {
                   setState(() {
                     currentSiteIndex++;
                   });
-                  if (currentSiteIndex == widget.topic.sites.length - 1) {
+                  if (currentSiteIndex == topic.sites.length - 1) {
                     ref.read(statisticsProvider.notifier).finishTopic();
                   }
                 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_philosophy_app/src/Models/quiz_result.dart';
+
+import '../Providers/result_provider.dart';
 
 class QuizSummaryView extends ConsumerWidget {
-  final QuizResult result;
-  const QuizSummaryView(this.result, {super.key});
+  const QuizSummaryView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final result = ref.watch(resultProvider);
     return 
     Scaffold(
       appBar: AppBar(

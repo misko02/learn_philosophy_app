@@ -4,9 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_philosophy_app/src/Views/quiz_summary_view.dart';
 import 'package:learn_philosophy_app/src/Views/topic_view.dart';
 
-import 'Models/quiz/quiz.dart';
-import 'Models/quiz_result.dart';
-import 'Models/topic/topic.dart';
 import 'Views/main_view.dart';
 import 'Views/quiz_view.dart';
 
@@ -42,15 +39,13 @@ class MyApp extends ConsumerWidget {
                 switch (routeSettings.name) {
                   case '/':
                     return  MainView();
-                  case '/topic/':
-                    final topic = routeSettings.arguments ?? const Topic(title: "", description: "");
-                    return  TopicView(topic as Topic);
+                  case '/topic/':{
+                    return  const TopicView();
+                  }
                   case '/quiz/':
-                    final quiz = routeSettings.arguments ?? const Quiz(title: "");
-                    return  QuizView(quiz as Quiz);
+                    return  const QuizView();
                   case '/summary/':
-                    final result = routeSettings.arguments ?? QuizResult(0, 0);
-                    return QuizSummaryView(result as QuizResult);
+                    return const QuizSummaryView();
                   default:
                     return  MainView();
                 }
