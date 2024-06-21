@@ -5,14 +5,14 @@ class User{
   String username;
   String password;
   String email;
-  List<Statistics> statistics;
+  Statistics userStatistics;
 
   User({
     required this.userId,
     required this.username,
     required this.password,
     required this.email,
-    required this.statistics
+    required this.userStatistics
   });
 
   factory User.fromJson(Map<String, Object?> json){
@@ -21,7 +21,7 @@ class User{
       username: json['username'] as String,
       password: json['password'] as String,
       email: json['email'] as String,
-      statistics: (json['statistics'] as List<Object?>).map((e) => Statistics.fromJson(e as Map<String, Object?>)).toList()
+      userStatistics: Statistics.fromJson(json['userStatistics'] as Map<String, Object?>)
     );
   }
 

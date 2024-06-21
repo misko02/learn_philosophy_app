@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhilosophyLearnAppAPI.Data;
 
@@ -11,9 +12,11 @@ using PhilosophyLearnAppAPI.Data;
 namespace PhilosophyLearnAppAPI.Migrations
 {
     [DbContext(typeof(PhilosophyLearnAppAPIContext))]
-    partial class PhilosophyLearnAppAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20240621184215_Add finished status to quiz")]
+    partial class Addfinishedstatustoquiz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

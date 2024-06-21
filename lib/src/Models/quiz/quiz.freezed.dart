@@ -23,6 +23,7 @@ mixin _$Quiz {
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   List<Question> get questions => throw _privateConstructorUsedError;
+  bool get finished => throw _privateConstructorUsedError;
   QuizResult? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,6 +40,7 @@ abstract class $QuizCopyWith<$Res> {
       {String title,
       String? description,
       List<Question> questions,
+      bool finished,
       QuizResult? result});
 }
 
@@ -58,6 +60,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
     Object? title = null,
     Object? description = freezed,
     Object? questions = null,
+    Object? finished = null,
     Object? result = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,6 +76,10 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
           ? _value.questions
           : questions // ignore: cast_nullable_to_non_nullable
               as List<Question>,
+      finished: null == finished
+          ? _value.finished
+          : finished // ignore: cast_nullable_to_non_nullable
+              as bool,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -92,6 +99,7 @@ abstract class _$$QuizImplCopyWith<$Res> implements $QuizCopyWith<$Res> {
       {String title,
       String? description,
       List<Question> questions,
+      bool finished,
       QuizResult? result});
 }
 
@@ -108,6 +116,7 @@ class __$$QuizImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = freezed,
     Object? questions = null,
+    Object? finished = null,
     Object? result = freezed,
   }) {
     return _then(_$QuizImpl(
@@ -123,6 +132,10 @@ class __$$QuizImplCopyWithImpl<$Res>
           ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
               as List<Question>,
+      finished: null == finished
+          ? _value.finished
+          : finished // ignore: cast_nullable_to_non_nullable
+              as bool,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -138,6 +151,7 @@ class _$QuizImpl implements _Quiz {
       {required this.title,
       this.description,
       final List<Question> questions = const [],
+      this.finished = false,
       this.result})
       : _questions = questions;
 
@@ -158,11 +172,14 @@ class _$QuizImpl implements _Quiz {
   }
 
   @override
+  @JsonKey()
+  final bool finished;
+  @override
   final QuizResult? result;
 
   @override
   String toString() {
-    return 'Quiz(title: $title, description: $description, questions: $questions, result: $result)';
+    return 'Quiz(title: $title, description: $description, questions: $questions, finished: $finished, result: $result)';
   }
 
   @override
@@ -175,13 +192,15 @@ class _$QuizImpl implements _Quiz {
                 other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._questions, _questions) &&
+            (identical(other.finished, finished) ||
+                other.finished == finished) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, title, description,
-      const DeepCollectionEquality().hash(_questions), result);
+      const DeepCollectionEquality().hash(_questions), finished, result);
 
   @JsonKey(ignore: true)
   @override
@@ -202,6 +221,7 @@ abstract class _Quiz implements Quiz {
       {required final String title,
       final String? description,
       final List<Question> questions,
+      final bool finished,
       final QuizResult? result}) = _$QuizImpl;
 
   factory _Quiz.fromJson(Map<String, dynamic> json) = _$QuizImpl.fromJson;
@@ -212,6 +232,8 @@ abstract class _Quiz implements Quiz {
   String? get description;
   @override
   List<Question> get questions;
+  @override
+  bool get finished;
   @override
   QuizResult? get result;
   @override

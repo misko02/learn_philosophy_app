@@ -18,5 +18,7 @@ namespace PhilosophyLearnAppAPI.Models
 
         [Required]
         public int CorrectAnswerIndex { get; init; }
+
+        public bool Finished { get; set; } = false;
     }
 }

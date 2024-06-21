@@ -8,7 +8,9 @@ namespace PhilosophyLearnAppAPI.Models
     {
         [Key, ForeignKey("Topic")]
         public int Index { get; init; }
+        [Required]
         public string Title { get; init; } = string.Empty;
+        [Required]
         public string Content { get; init; } = string.Empty;
     }
 }
