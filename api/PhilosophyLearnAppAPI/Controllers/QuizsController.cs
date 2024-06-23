@@ -12,11 +12,11 @@ namespace PhilosophyLearnAppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuizesController : ControllerBase
+    public class QuizsController : ControllerBase
     {
         private readonly PhilosophyLearnAppAPIContext _context;
 
-        public QuizesController(PhilosophyLearnAppAPIContext context)
+        public QuizsController(PhilosophyLearnAppAPIContext context)
         {
             _context = context;
         }
@@ -47,7 +47,7 @@ namespace PhilosophyLearnAppAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutQuiz(int id, Quiz quiz)
         {
-            if (id != quiz.Id)
+            if (id != quiz.QuizId)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace PhilosophyLearnAppAPI.Controllers
             _context.Quiz.Add(quiz);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetQuiz", new { id = quiz.Id }, quiz);
+            return CreatedAtAction("GetQuiz", new { id = quiz.QuizId }, quiz);
         }
 
         // DELETE: api/Quizs/5
@@ -102,7 +102,7 @@ namespace PhilosophyLearnAppAPI.Controllers
 
         private bool QuizExists(int id)
         {
-            return _context.Quiz.Any(e => e.Id == id);
+            return _context.Quiz.Any(e => e.QuizId == id);
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using PhilosophyLearnAppAPI.Data;
 using PhilosophyLearnAppAPI.Models;
 
@@ -15,10 +12,12 @@ namespace PhilosophyLearnAppAPI.Controllers
     public class TopicsController : ControllerBase
     {
         private readonly PhilosophyLearnAppAPIContext _context;
+        private readonly ILogger<Topic> _logger;
 
-        public TopicsController(PhilosophyLearnAppAPIContext context)
+        public TopicsController(PhilosophyLearnAppAPIContext context, ILogger<Topic> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Topics
@@ -33,12 +32,11 @@ namespace PhilosophyLearnAppAPI.Controllers
         public async Task<ActionResult<Topic>> GetTopic(int id)
         {
             var topic = await _context.Topic.FindAsync(id);
-
             if (topic == null)
             {
                 return NotFound();
             }
-
+            topic.Sites.AddRange(_context.Site.Where(s => s.TopicId == id).ToList());
             return topic;
         }
 

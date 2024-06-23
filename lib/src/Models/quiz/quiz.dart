@@ -13,6 +13,8 @@ class Quiz with _$Quiz{
     String? description,
     @Default([])
     List<Question> questions,
+    @Default(false)
+    bool finished,
     QuizResult? result
   }) = _Quiz;
 

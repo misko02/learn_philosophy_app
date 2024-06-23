@@ -10,6 +10,7 @@ part 'topic.g.dart';
 @freezed 
 class Topic with _$Topic{
   const factory Topic({
+    required int id,
     required String title,
     required String description,
     @Default(Quiz(title: ""))

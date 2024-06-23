@@ -7,7 +7,7 @@ import 'package:learn_philosophy_app/src/Utilities/seed_data.dart';
 import '../Models/topic/topic.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://localhost/api';
+  static const String baseUrl = 'https://localhost:7146/api';
  
   static Future<List<Topic>> getTopics() async {
     late List<Topic> topics = [];
@@ -26,6 +26,22 @@ class ApiService {
     }
     return topics;
   } 
+  static Future<Topic> getTopicById(int id) async{
+    late Topic topic;
+    try{
+      final response = await http.get(Uri.parse('$baseUrl/topics/$id'));
+      if (response.statusCode == 200) {
+        topic = Topic.fromJson(jsonDecode(response.body));
+      } else {
+        throw "Can't get topic.";
+      }
+    }
+    catch (e) {
+      topic = SeedData.seedTopics.firstWhere((element) => element.id == id);
+      print(e.toString());
+    }
+    return topic;
+  }
   static Future<Statistics> getStatistics() async {
     late Statistics statistics;
     try {

@@ -10,8 +10,9 @@ namespace PhilosophyLearnAppAPI.Models
         public Guid UserId { get; set; }
         public int QuizzesTaken { get; set; }
         public int QuizzesPassed { get; set; }
-        public float PercentOfQuizzes => QuizzesTaken == 0 ? 0 : QuizzesPassed / QuizzesTaken * 100;
         public int TopicsFinished { get; set; }
-        public int TotalQuestionsAnswered { get; set; }
+        public int QuestionsAnswered { get; set; }
+        public int CorrectAnswers { get; set; }
+        public int WrongAnswers { get; set; }
     }
 }

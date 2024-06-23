@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhilosophyLearnAppAPI.Data;
 
@@ -11,9 +12,11 @@ using PhilosophyLearnAppAPI.Data;
 namespace PhilosophyLearnAppAPI.Migrations
 {
     [DbContext(typeof(PhilosophyLearnAppAPIContext))]
-    partial class PhilosophyLearnAppAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20240623141205_Fix foreign key for Question")]
+    partial class FixforeignkeyforQuestion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
