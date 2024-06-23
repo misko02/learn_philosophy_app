@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging;
 using PhilosophyLearnAppAPI.Data;
 using PhilosophyLearnAppAPI.Models;
 
@@ -9,48 +12,47 @@ namespace PhilosophyLearnAppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TopicsController : ControllerBase
+    public class QuizsController : ControllerBase
     {
         private readonly PhilosophyLearnAppAPIContext _context;
-        private readonly ILogger<Topic> _logger;
 
-        public TopicsController(PhilosophyLearnAppAPIContext context, ILogger<Topic> logger)
+        public QuizsController(PhilosophyLearnAppAPIContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
-        // GET: api/Topics
+        // GET: api/Quizs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Topic>>> GetTopic()
+        public async Task<ActionResult<IEnumerable<Quiz>>> GetQuiz()
         {
-            return await _context.Topic.ToListAsync();
+            return await _context.Quiz.ToListAsync();
         }
 
-        // GET: api/Topics/5
+        // GET: api/Quizs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Topic>> GetTopic(int id)
+        public async Task<ActionResult<Quiz>> GetQuiz(int id)
         {
-            var topic = await _context.Topic.FindAsync(id);
-            if (topic == null)
+            var quiz = await _context.Quiz.FindAsync(id);
+
+            if (quiz == null)
             {
                 return NotFound();
             }
-            topic.Sites.AddRange(_context.Site.Where(s => s.TopicId == id).ToList());
-            return topic;
+
+            return quiz;
         }
 
-        // PUT: api/Topics/5
+        // PUT: api/Quizs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTopic(int id, Topic topic)
+        public async Task<IActionResult> PutQuiz(int id, Quiz quiz)
         {
-            if (id != topic.TopicId)
+            if (id != quiz.QuizId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(topic).State = EntityState.Modified;
+            _context.Entry(quiz).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +60,7 @@ namespace PhilosophyLearnAppAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TopicExists(id))
+                if (!QuizExists(id))
                 {
                     return NotFound();
                 }
@@ -71,36 +73,36 @@ namespace PhilosophyLearnAppAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Topics
+        // POST: api/Quizs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Topic>> PostTopic(Topic topic)
+        public async Task<ActionResult<Quiz>> PostQuiz(Quiz quiz)
         {
-            _context.Topic.Add(topic);
+            _context.Quiz.Add(quiz);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTopic", new { id = topic.TopicId }, topic);
+            return CreatedAtAction("GetQuiz", new { id = quiz.QuizId }, quiz);
         }
 
-        // DELETE: api/Topics/5
+        // DELETE: api/Quizs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTopic(int id)
+        public async Task<IActionResult> DeleteQuiz(int id)
         {
-            var topic = await _context.Topic.FindAsync(id);
-            if (topic == null)
+            var quiz = await _context.Quiz.FindAsync(id);
+            if (quiz == null)
             {
                 return NotFound();
             }
 
-            _context.Topic.Remove(topic);
+            _context.Quiz.Remove(quiz);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TopicExists(int id)
+        private bool QuizExists(int id)
         {
-            return _context.Topic.Any(e => e.TopicId == id);
+            return _context.Quiz.Any(e => e.QuizId == id);
         }
     }
 }

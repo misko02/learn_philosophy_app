@@ -17,10 +17,12 @@ namespace PhilosophyLearnAppAPI.Controllers
     public class StatisticsController : ControllerBase
     {
         private readonly PhilosophyLearnAppAPIContext _context;
+        private readonly ILogger<Statistics> _logger;
 
-        public StatisticsController(PhilosophyLearnAppAPIContext context)
+        public StatisticsController(PhilosophyLearnAppAPIContext context, ILogger<Statistics> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Statistics
@@ -87,14 +89,11 @@ namespace PhilosophyLearnAppAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (StatisticsExists(statistics.UserId))
-                {
-                    return Conflict();
-                }
-                else
+                if (!StatisticsExists(statistics.UserId))
                 {
                     throw;
                 }
+                return Conflict();
             }
 
             return CreatedAtAction("GetStatistics", new { id = statistics.UserId }, statistics);

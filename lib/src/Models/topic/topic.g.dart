@@ -7,6 +7,7 @@ part of 'topic.dart';
 // **************************************************************************
 
 _$TopicImpl _$$TopicImplFromJson(Map<String, dynamic> json) => _$TopicImpl(
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       description: json['description'] as String,
       quiz: json['quiz'] == null
@@ -20,6 +21,7 @@ _$TopicImpl _$$TopicImplFromJson(Map<String, dynamic> json) => _$TopicImpl(
 
 Map<String, dynamic> _$$TopicImplToJson(_$TopicImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'description': instance.description,
       'quiz': instance.quiz,

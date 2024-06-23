@@ -15,10 +15,12 @@ namespace PhilosophyLearnAppAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly PhilosophyLearnAppAPIContext _context;
+        private readonly ILogger<User> _logger;
 
-        public UsersController(PhilosophyLearnAppAPIContext context)
+        public UsersController(PhilosophyLearnAppAPIContext context, ILogger<User> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Users

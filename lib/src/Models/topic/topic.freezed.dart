@@ -20,6 +20,7 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Topic {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Quiz get quiz => throw _privateConstructorUsedError;
@@ -35,7 +36,8 @@ abstract class $TopicCopyWith<$Res> {
   factory $TopicCopyWith(Topic value, $Res Function(Topic) then) =
       _$TopicCopyWithImpl<$Res, Topic>;
   @useResult
-  $Res call({String title, String description, Quiz quiz, List<Site> sites});
+  $Res call(
+      {int id, String title, String description, Quiz quiz, List<Site> sites});
 
   $QuizCopyWith<$Res> get quiz;
 }
@@ -53,12 +55,17 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? quiz = null,
     Object? sites = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -94,7 +101,8 @@ abstract class _$$TopicImplCopyWith<$Res> implements $TopicCopyWith<$Res> {
       __$$TopicImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description, Quiz quiz, List<Site> sites});
+  $Res call(
+      {int id, String title, String description, Quiz quiz, List<Site> sites});
 
   @override
   $QuizCopyWith<$Res> get quiz;
@@ -111,12 +119,17 @@ class __$$TopicImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? quiz = null,
     Object? sites = null,
   }) {
     return _then(_$TopicImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -141,7 +154,8 @@ class __$$TopicImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TopicImpl implements _Topic {
   const _$TopicImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.description,
       this.quiz = const Quiz(title: ""),
       final List<Site> sites = const []})
@@ -150,6 +164,8 @@ class _$TopicImpl implements _Topic {
   factory _$TopicImpl.fromJson(Map<String, dynamic> json) =>
       _$$TopicImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String title;
   @override
@@ -168,7 +184,7 @@ class _$TopicImpl implements _Topic {
 
   @override
   String toString() {
-    return 'Topic(title: $title, description: $description, quiz: $quiz, sites: $sites)';
+    return 'Topic(id: $id, title: $title, description: $description, quiz: $quiz, sites: $sites)';
   }
 
   @override
@@ -176,6 +192,7 @@ class _$TopicImpl implements _Topic {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TopicImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -185,7 +202,7 @@ class _$TopicImpl implements _Topic {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, description, quiz,
+  int get hashCode => Object.hash(runtimeType, id, title, description, quiz,
       const DeepCollectionEquality().hash(_sites));
 
   @JsonKey(ignore: true)
@@ -204,13 +221,16 @@ class _$TopicImpl implements _Topic {
 
 abstract class _Topic implements Topic {
   const factory _Topic(
-      {required final String title,
+      {required final int id,
+      required final String title,
       required final String description,
       final Quiz quiz,
       final List<Site> sites}) = _$TopicImpl;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$TopicImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get title;
   @override

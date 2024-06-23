@@ -10,7 +10,7 @@ class ApiService {
   static Future<List<Topic>> getTopics() async {
     late List<Topic> topics = [];
     try{
-      final response = await http.get(Uri.https(baseUrl,'/topics'));
+      final response = await http.get(Uri.parse('$baseUrl/topics'));
       if (response.statusCode == 200) {
         List<dynamic> body = jsonDecode(response.body);
         topics = body.map((dynamic item) => Topic.fromJson(item)).toList();
@@ -24,4 +24,20 @@ class ApiService {
     }
     return topics;
   } 
+  static Future<Topic> getTopicById(int id) async{
+    late Topic topic;
+    try{
+      final response = await http.get(Uri.parse('$baseUrl/topics/$id'));
+      if (response.statusCode == 200) {
+        topic = Topic.fromJson(jsonDecode(response.body));
+      } else {
+        throw "Can't get topic.";
+      }
+    }
+    catch (e) {
+      topic = SeedData.seedTopics.firstWhere((element) => element.id == id);
+      print(e.toString());
+    }
+    return topic;
+  }
 }

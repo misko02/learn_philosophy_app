@@ -43,7 +43,7 @@ class MyApp extends ConsumerWidget {
                   case '/':
                     return  MainView();
                   case '/topic/':
-                    final topic = routeSettings.arguments ?? const Topic(title: "", description: "");
+                    final topic = routeSettings.arguments ?? const Topic(id: 0, title: "", description: "");
                     return  TopicView(topic as Topic);
                   case '/quiz/':
                     final quiz = routeSettings.arguments ?? const Quiz(title: "");

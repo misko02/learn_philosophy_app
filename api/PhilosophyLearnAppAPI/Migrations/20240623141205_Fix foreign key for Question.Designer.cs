@@ -12,8 +12,8 @@ using PhilosophyLearnAppAPI.Data;
 namespace PhilosophyLearnAppAPI.Migrations
 {
     [DbContext(typeof(PhilosophyLearnAppAPIContext))]
-    [Migration("20240621184215_Add finished status to quiz")]
-    partial class Addfinishedstatustoquiz
+    [Migration("20240623141205_Fix foreign key for Question")]
+    partial class FixforeignkeyforQuestion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace PhilosophyLearnAppAPI.Migrations
 
             modelBuilder.Entity("PhilosophyLearnAppAPI.Models.Question", b =>
                 {
-                    b.Property<int>("QuizId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuizId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Answers")
                         .IsRequired()
@@ -44,33 +44,30 @@ namespace PhilosophyLearnAppAPI.Migrations
                     b.Property<int>("CorrectAnswerIndex")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Finished")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Index")
+                    b.Property<int>("QuizId")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuizId1")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("QuizId");
-
-                    b.HasIndex("QuizId1");
+                    b.HasIndex("QuizId");
 
                     b.ToTable("Question");
                 });
 
             modelBuilder.Entity("PhilosophyLearnAppAPI.Models.Quiz", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("QuizId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuizId"));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Finished")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -80,7 +77,7 @@ namespace PhilosophyLearnAppAPI.Migrations
                     b.Property<int>("TopicId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("QuizId");
 
                     b.HasIndex("TopicId")
                         .IsUnique();
@@ -90,11 +87,11 @@ namespace PhilosophyLearnAppAPI.Migrations
 
             modelBuilder.Entity("PhilosophyLearnAppAPI.Models.Site", b =>
                 {
-                    b.Property<int>("Index")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Index"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -104,10 +101,10 @@ namespace PhilosophyLearnAppAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TopicId")
+                    b.Property<int>("TopicId")
                         .HasColumnType("int");
 
-                    b.HasKey("Index");
+                    b.HasKey("Id");
 
                     b.HasIndex("TopicId");
 
@@ -149,6 +146,10 @@ namespace PhilosophyLearnAppAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TopicId"));
+
+                    b.Property<string>("Categories")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -194,7 +195,7 @@ namespace PhilosophyLearnAppAPI.Migrations
                 {
                     b.HasOne("PhilosophyLearnAppAPI.Models.Quiz", null)
                         .WithMany("Questions")
-                        .HasForeignKey("QuizId1")
+                        .HasForeignKey("QuizId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -212,7 +213,9 @@ namespace PhilosophyLearnAppAPI.Migrations
                 {
                     b.HasOne("PhilosophyLearnAppAPI.Models.Topic", null)
                         .WithMany("Sites")
-                        .HasForeignKey("TopicId");
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PhilosophyLearnAppAPI.Models.Statistics", b =>

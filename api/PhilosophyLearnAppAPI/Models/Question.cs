@@ -6,9 +6,8 @@ namespace PhilosophyLearnAppAPI.Models
 {
     public record Question
     {
-        [Key, ForeignKey("Quiz")]
-        public int QuizId{ get; init; }
-        required public int Index { get; init; }
+        [Key]
+        public int Id { get; init; }
 
         [Required]
         public string Content { get; init; } = string.Empty;
@@ -19,6 +18,7 @@ namespace PhilosophyLearnAppAPI.Models
         [Required]
         public int CorrectAnswerIndex { get; init; }
 
-        public bool Finished { get; set; } = false;
+        [ForeignKey("Quiz")]
+        public int QuizId { get; init; }
     }
 }

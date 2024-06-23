@@ -8,6 +8,7 @@ import '../Models/site/site.dart';
 class SeedData {
   static List<Topic> seedTopics = [
     Topic(
+      id: 0,
       title: 'Introduction to Philosophy',
       description: 'This is an introduction to philosophy',
       sites: [
@@ -55,9 +56,10 @@ class SeedData {
           
         ],
         result: QuizResult(0,0),
-      )
+      ), 
     ),
     Topic(
+      id: 1,
       title: 'Epistemology',
       description: 'This is an introduction to epistemology',
       sites: [
@@ -107,6 +109,7 @@ class SeedData {
          )
     ),
     Topic(
+      id: 2,
       title: 'Metaphysics',
       description: 'This is an introduction to metaphysics',
       sites: [
@@ -156,6 +159,7 @@ class SeedData {
          )
     ),
     Topic(
+      id: 3,
       title: 'Ethics',
       description: 'This is an introduction to ethics',
       sites: [
@@ -199,6 +203,7 @@ class SeedData {
       )
     ),
     Topic(
+      id: 4,
       title: 'Logic',
       description: 'This is an introduction to logic',
       sites: [

@@ -16,6 +16,8 @@ namespace PhilosophyLearnAppAPI.Models
         [Required]
         public string Description { get; init; } = string.Empty;
 
+        public string[] Categories { get; init; } = [];
+
         public virtual ICollection<Site> Sites { get; init; } = [];
         public virtual Quiz Quiz { get; init; } = new Quiz();
     }
