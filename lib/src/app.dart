@@ -25,7 +25,6 @@ class MyApp extends ConsumerWidget {
           ],
           supportedLocales: const [
             Locale('en', ''), 
-            Locale('pl','')
           ],
           home:  MainView(),
           onGenerateTitle: (BuildContext context) => 'Learn Philosophy app',

@@ -20,7 +20,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Question {
-  int get index => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   List<String> get answers => throw _privateConstructorUsedError;
   int get correctAnswerIndex => throw _privateConstructorUsedError;
@@ -37,10 +37,7 @@ abstract class $QuestionCopyWith<$Res> {
       _$QuestionCopyWithImpl<$Res, Question>;
   @useResult
   $Res call(
-      {int index,
-      String content,
-      List<String> answers,
-      int correctAnswerIndex});
+      {int id, String content, List<String> answers, int correctAnswerIndex});
 }
 
 /// @nodoc
@@ -56,15 +53,15 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? id = null,
     Object? content = null,
     Object? answers = null,
     Object? correctAnswerIndex = null,
   }) {
     return _then(_value.copyWith(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
       content: null == content
           ? _value.content
@@ -91,10 +88,7 @@ abstract class _$$QuestionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int index,
-      String content,
-      List<String> answers,
-      int correctAnswerIndex});
+      {int id, String content, List<String> answers, int correctAnswerIndex});
 }
 
 /// @nodoc
@@ -108,15 +102,15 @@ class __$$QuestionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? id = null,
     Object? content = null,
     Object? answers = null,
     Object? correctAnswerIndex = null,
   }) {
     return _then(_$QuestionImpl(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
       content: null == content
           ? _value.content
@@ -138,7 +132,7 @@ class __$$QuestionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuestionImpl implements _Question {
   const _$QuestionImpl(
-      {required this.index,
+      {required this.id,
       required this.content,
       required final List<String> answers,
       required this.correctAnswerIndex})
@@ -148,7 +142,7 @@ class _$QuestionImpl implements _Question {
       _$$QuestionImplFromJson(json);
 
   @override
-  final int index;
+  final int id;
   @override
   final String content;
   final List<String> _answers;
@@ -164,7 +158,7 @@ class _$QuestionImpl implements _Question {
 
   @override
   String toString() {
-    return 'Question(index: $index, content: $content, answers: $answers, correctAnswerIndex: $correctAnswerIndex)';
+    return 'Question(id: $id, content: $content, answers: $answers, correctAnswerIndex: $correctAnswerIndex)';
   }
 
   @override
@@ -172,7 +166,7 @@ class _$QuestionImpl implements _Question {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionImpl &&
-            (identical(other.index, index) || other.index == index) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             const DeepCollectionEquality().equals(other._answers, _answers) &&
             (identical(other.correctAnswerIndex, correctAnswerIndex) ||
@@ -181,7 +175,7 @@ class _$QuestionImpl implements _Question {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, index, content,
+  int get hashCode => Object.hash(runtimeType, id, content,
       const DeepCollectionEquality().hash(_answers), correctAnswerIndex);
 
   @JsonKey(ignore: true)
@@ -200,7 +194,7 @@ class _$QuestionImpl implements _Question {
 
 abstract class _Question implements Question {
   const factory _Question(
-      {required final int index,
+      {required final int id,
       required final String content,
       required final List<String> answers,
       required final int correctAnswerIndex}) = _$QuestionImpl;
@@ -209,7 +203,7 @@ abstract class _Question implements Question {
       _$QuestionImpl.fromJson;
 
   @override
-  int get index;
+  int get id;
   @override
   String get content;
   @override

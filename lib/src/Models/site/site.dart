@@ -7,7 +7,7 @@ part 'site.g.dart';
 class Site with _$Site{
 
 factory Site({
-  required int index,
+  required int id,
   required String title,
   required String content,
 }) = _Site;

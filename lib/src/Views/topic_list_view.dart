@@ -4,6 +4,7 @@ import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
 import 'package:learn_philosophy_app/src/Services/api_service.dart';
 
 import '../Models/topic/topic.dart';
+import '../Providers/topics_list_provider.dart';
 
 class TopicListView extends ConsumerStatefulWidget {
   const TopicListView({super.key});
@@ -16,29 +17,21 @@ class TopicListView extends ConsumerStatefulWidget {
 
 class _TopicListViewState extends ConsumerState<TopicListView> {
 
-  late List<Topic> topics = [];
-  
-  void getData() async {
-    topics = await ApiService.getTopics();
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
+Future<Topic> getTopic(int index) {
+ return  ApiService.getTopicById(index).then((value) => value);
+}
 
   @override
   Widget build(BuildContext context) {
+    List<Topic> topics = ref.watch(topicsListProvider).valueOrNull ?? [];
     return ListView.builder(
       itemCount: topics.length,
       itemBuilder: (context, index) {
       return ListTile(
         title: Text(topics[index].title, style: const TextStyle(fontSize: 24, color: Colors.white)),
         subtitle: Text(topics[index].description, style: const TextStyle(fontSize: 18, color: Colors.white)),
-        onTap: () {
-          ref.read(topicProvider.notifier).state = topics[index];
+        onTap: () async {
+          ref.read(topicProvider.notifier).state = await ApiService.getTopicById(topics[index].topicId);
           Navigator.pushNamed(context, '/topic/');
         },
       );

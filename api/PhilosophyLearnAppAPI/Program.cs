@@ -1,13 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhilosophyLearnAppAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<PhilosophyLearnAppAPIContext>(options =>
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("PhilosophyLearnAppAPIContext") ?? throw new InvalidOperationException("Connection string 'PhilosophyLearnAppAPIContext' not found."));
     }
 );
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 
 // Add services to the container.
 
@@ -32,6 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("MyPolicy");
 //app.UseAuthentication();
 
 //app.UseAuthorization();

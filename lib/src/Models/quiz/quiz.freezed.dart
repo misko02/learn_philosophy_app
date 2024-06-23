@@ -20,6 +20,7 @@ Quiz _$QuizFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Quiz {
+  int get quizId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   List<Question> get questions => throw _privateConstructorUsedError;
@@ -37,7 +38,8 @@ abstract class $QuizCopyWith<$Res> {
       _$QuizCopyWithImpl<$Res, Quiz>;
   @useResult
   $Res call(
-      {String title,
+      {int quizId,
+      String title,
       String? description,
       List<Question> questions,
       bool finished,
@@ -57,6 +59,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? quizId = null,
     Object? title = null,
     Object? description = freezed,
     Object? questions = null,
@@ -64,6 +67,10 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
     Object? result = freezed,
   }) {
     return _then(_value.copyWith(
+      quizId: null == quizId
+          ? _value.quizId
+          : quizId // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -96,7 +103,8 @@ abstract class _$$QuizImplCopyWith<$Res> implements $QuizCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title,
+      {int quizId,
+      String title,
       String? description,
       List<Question> questions,
       bool finished,
@@ -113,6 +121,7 @@ class __$$QuizImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? quizId = null,
     Object? title = null,
     Object? description = freezed,
     Object? questions = null,
@@ -120,6 +129,10 @@ class __$$QuizImplCopyWithImpl<$Res>
     Object? result = freezed,
   }) {
     return _then(_$QuizImpl(
+      quizId: null == quizId
+          ? _value.quizId
+          : quizId // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -148,7 +161,8 @@ class __$$QuizImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuizImpl implements _Quiz {
   const _$QuizImpl(
-      {required this.title,
+      {required this.quizId,
+      required this.title,
       this.description,
       final List<Question> questions = const [],
       this.finished = false,
@@ -158,6 +172,8 @@ class _$QuizImpl implements _Quiz {
   factory _$QuizImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuizImplFromJson(json);
 
+  @override
+  final int quizId;
   @override
   final String title;
   @override
@@ -179,7 +195,7 @@ class _$QuizImpl implements _Quiz {
 
   @override
   String toString() {
-    return 'Quiz(title: $title, description: $description, questions: $questions, finished: $finished, result: $result)';
+    return 'Quiz(quizId: $quizId, title: $title, description: $description, questions: $questions, finished: $finished, result: $result)';
   }
 
   @override
@@ -187,6 +203,7 @@ class _$QuizImpl implements _Quiz {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuizImpl &&
+            (identical(other.quizId, quizId) || other.quizId == quizId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -199,7 +216,7 @@ class _$QuizImpl implements _Quiz {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, description,
+  int get hashCode => Object.hash(runtimeType, quizId, title, description,
       const DeepCollectionEquality().hash(_questions), finished, result);
 
   @JsonKey(ignore: true)
@@ -218,7 +235,8 @@ class _$QuizImpl implements _Quiz {
 
 abstract class _Quiz implements Quiz {
   const factory _Quiz(
-      {required final String title,
+      {required final int quizId,
+      required final String title,
       final String? description,
       final List<Question> questions,
       final bool finished,
@@ -226,6 +244,8 @@ abstract class _Quiz implements Quiz {
 
   factory _Quiz.fromJson(Map<String, dynamic> json) = _$QuizImpl.fromJson;
 
+  @override
+  int get quizId;
   @override
   String get title;
   @override

@@ -12,4 +12,5 @@ class TopicsList extends _$TopicsList {
    Future<List<Topic>> build() async{
     return await ApiService.getTopics();
   }
+  
 }

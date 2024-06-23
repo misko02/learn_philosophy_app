@@ -6,10 +6,11 @@ import '../Models/question/question.dart';
 
 final quizProvider = StateProvider((ref) => 
 const Quiz(
+  quizId: 0,
   title: "Quiz",
   questions: [
     Question(
-      index: 0,
+      id: 0,
       content: "Question 1",
       answers: [
         "Answer 1",
@@ -20,7 +21,7 @@ const Quiz(
       correctAnswerIndex: 0
     ),
     Question(
-      index: 1,
+      id: 1,
       content: "Question 2",
       answers: [
         "Answer 1",
@@ -31,7 +32,7 @@ const Quiz(
       correctAnswerIndex: 1
     ),
     Question(
-      index: 2,
+      id: 2,
       content: "Question 3",
       answers: [
         "Answer 1",

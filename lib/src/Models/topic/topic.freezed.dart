@@ -20,9 +20,10 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Topic {
-  int get id => throw _privateConstructorUsedError;
+  int get topicId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  List<String>? get categories => throw _privateConstructorUsedError;
   Quiz get quiz => throw _privateConstructorUsedError;
   List<Site> get sites => throw _privateConstructorUsedError;
 
@@ -37,7 +38,12 @@ abstract class $TopicCopyWith<$Res> {
       _$TopicCopyWithImpl<$Res, Topic>;
   @useResult
   $Res call(
-      {int id, String title, String description, Quiz quiz, List<Site> sites});
+      {int topicId,
+      String title,
+      String description,
+      List<String>? categories,
+      Quiz quiz,
+      List<Site> sites});
 
   $QuizCopyWith<$Res> get quiz;
 }
@@ -55,16 +61,17 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? topicId = null,
     Object? title = null,
     Object? description = null,
+    Object? categories = freezed,
     Object? quiz = null,
     Object? sites = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      topicId: null == topicId
+          ? _value.topicId
+          : topicId // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -74,6 +81,10 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      categories: freezed == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       quiz: null == quiz
           ? _value.quiz
           : quiz // ignore: cast_nullable_to_non_nullable
@@ -102,7 +113,12 @@ abstract class _$$TopicImplCopyWith<$Res> implements $TopicCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id, String title, String description, Quiz quiz, List<Site> sites});
+      {int topicId,
+      String title,
+      String description,
+      List<String>? categories,
+      Quiz quiz,
+      List<Site> sites});
 
   @override
   $QuizCopyWith<$Res> get quiz;
@@ -119,16 +135,17 @@ class __$$TopicImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? topicId = null,
     Object? title = null,
     Object? description = null,
+    Object? categories = freezed,
     Object? quiz = null,
     Object? sites = null,
   }) {
     return _then(_$TopicImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      topicId: null == topicId
+          ? _value.topicId
+          : topicId // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -138,6 +155,10 @@ class __$$TopicImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      categories: freezed == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       quiz: null == quiz
           ? _value.quiz
           : quiz // ignore: cast_nullable_to_non_nullable
@@ -154,22 +175,34 @@ class __$$TopicImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TopicImpl implements _Topic {
   const _$TopicImpl(
-      {required this.id,
+      {required this.topicId,
       required this.title,
       required this.description,
-      this.quiz = const Quiz(title: ""),
+      final List<String>? categories,
+      this.quiz = const Quiz(quizId: 0, title: ""),
       final List<Site> sites = const []})
-      : _sites = sites;
+      : _categories = categories,
+        _sites = sites;
 
   factory _$TopicImpl.fromJson(Map<String, dynamic> json) =>
       _$$TopicImplFromJson(json);
 
   @override
-  final int id;
+  final int topicId;
   @override
   final String title;
   @override
   final String description;
+  final List<String>? _categories;
+  @override
+  List<String>? get categories {
+    final value = _categories;
+    if (value == null) return null;
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey()
   final Quiz quiz;
@@ -184,7 +217,7 @@ class _$TopicImpl implements _Topic {
 
   @override
   String toString() {
-    return 'Topic(id: $id, title: $title, description: $description, quiz: $quiz, sites: $sites)';
+    return 'Topic(topicId: $topicId, title: $title, description: $description, categories: $categories, quiz: $quiz, sites: $sites)';
   }
 
   @override
@@ -192,17 +225,25 @@ class _$TopicImpl implements _Topic {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TopicImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.topicId, topicId) || other.topicId == topicId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories) &&
             (identical(other.quiz, quiz) || other.quiz == quiz) &&
             const DeepCollectionEquality().equals(other._sites, _sites));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description, quiz,
+  int get hashCode => Object.hash(
+      runtimeType,
+      topicId,
+      title,
+      description,
+      const DeepCollectionEquality().hash(_categories),
+      quiz,
       const DeepCollectionEquality().hash(_sites));
 
   @JsonKey(ignore: true)
@@ -221,20 +262,23 @@ class _$TopicImpl implements _Topic {
 
 abstract class _Topic implements Topic {
   const factory _Topic(
-      {required final int id,
+      {required final int topicId,
       required final String title,
       required final String description,
+      final List<String>? categories,
       final Quiz quiz,
       final List<Site> sites}) = _$TopicImpl;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$TopicImpl.fromJson;
 
   @override
-  int get id;
+  int get topicId;
   @override
   String get title;
   @override
   String get description;
+  @override
+  List<String>? get categories;
   @override
   Quiz get quiz;
   @override

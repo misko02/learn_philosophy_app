@@ -7,14 +7,14 @@ part of 'site.dart';
 // **************************************************************************
 
 _$SiteImpl _$$SiteImplFromJson(Map<String, dynamic> json) => _$SiteImpl(
-      index: (json['index'] as num).toInt(),
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       content: json['content'] as String,
     );
 
 Map<String, dynamic> _$$SiteImplToJson(_$SiteImpl instance) =>
     <String, dynamic>{
-      'index': instance.index,
+      'id': instance.id,
       'title': instance.title,
       'content': instance.content,
     };
