@@ -62,7 +62,7 @@ class _TopicViewState extends ConsumerState<TopicView> {
               child: const Text("Try Yourself"),
               onPressed: () {
                 ref.read(statisticsProvider.notifier).takeQuiz();
-                ref.read(quizProvider.notifier).state = topic.quiz;
+                ref.read(quizProvider.notifier).state = ref.read(quizProvider.notifier).state;
                 Navigator.pushNamed(context, '/quiz/');
                 setState(() {
                 });

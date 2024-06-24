@@ -38,7 +38,7 @@ class _QuestionViewState extends ConsumerState<QuizView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text (quiz.questions[currentQuestionIndex].content, style: const TextStyle(fontSize: 24)),
+              Text (quiz.questions[currentQuestionIndex].content??"", style: const TextStyle(fontSize: 24)),
               ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -68,7 +68,7 @@ class _QuestionViewState extends ConsumerState<QuizView> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('You got $correctAnswers out of ${quiz.questions.length} correct!')));
                             ref.read(statisticsProvider.notifier).passQuiz();
-                            ref.read(resultProvider.notifier).state = quiz.result?? QuizResult(0,0);
+                            ref.read(resultProvider.notifier).state = quiz.result?? QuizResult(correctAnswers: 0, wrongAnswers: 0);
                             Navigator.pushNamed(context, '/summary/');
                         }
                       },

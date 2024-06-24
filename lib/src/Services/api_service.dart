@@ -13,8 +13,8 @@ class ApiService {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 2),
+      receiveTimeout: const Duration(seconds: 2),
     )
   );
   static Logger logger = Logger('ApiService');
@@ -53,6 +53,7 @@ class ApiService {
     }
     return topic;
   }
+  
   static Future<Statistics> getStatistics() async {
     late Statistics statistics;
     try {
@@ -63,7 +64,7 @@ class ApiService {
       statistics = Statistics.fromJson(response.data);
     } 
     catch (e) {
-      statistics = const Statistics(quizesTaken: 0, quizesPassed: 0, topicsFinished: 0, questionsAnswered: 0, correctAnswers: 0, wrongAnswers: 0);
+      statistics = Statistics();
       logger.log(Level.WARNING, e.toString());
     }
     return statistics;

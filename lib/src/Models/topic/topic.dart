@@ -8,17 +8,16 @@ import '../site/site.dart';
 part 'topic.freezed.dart';
 part 'topic.g.dart';
 
-@freezed 
+@unfreezed 
 class Topic with _$Topic{
-  const factory Topic({
-    required int topicId,
-    required String title,
-    required String description,
-    List<String>? categories,
-    @Default(Quiz(quizId:0, title: ""))
-    Quiz quiz,
-    @Default([])
-    List<Site> sites 
+  @HiveType(typeId: 4, adapterName: 'TopicAdapter')
+  factory Topic({
+    @HiveField(0) required int topicId,
+    @HiveField(1) required String title,
+    @HiveField(2) required String description,
+    @HiveField(3) List<String>? categories,
+    @HiveField(4) Quiz? quiz,
+    @HiveField(5) @Default([]) List<Site> sites 
   }) = _Topic;
 
   factory Topic.fromJson(Map<String, Object?> json) => _$TopicFromJson(json);

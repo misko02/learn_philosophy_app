@@ -1,20 +1,19 @@
-class QuizResult{
-  int correctAnswers;
-  int wrongAnswers;
 
-  QuizResult(this.correctAnswers,this.wrongAnswers,);
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 
-  factory QuizResult.fromJson(Map<String, Object?> json) {
-    return QuizResult(
-      json['correctAnswers'] as int,
-      json['wrongAnswers'] as int
-    );
-  }
+part 'quiz_result.freezed.dart';
+part 'quiz_result.g.dart';
+
+@unfreezed
+class QuizResult with _$QuizResult{
+  @HiveType(typeId: 8, adapterName: 'QuizResultAdapter')
+  factory QuizResult({
+    @HiveField(0) required int correctAnswers,
+    @HiveField(1) required int wrongAnswers
+  }) = _QuizResult;
   
-  Map<String, Object?> toJson() {
-    return {
-      'correctAnswers': correctAnswers,
-      'wrongAnswers': wrongAnswers
-    };
-  }
+  QuizResult._();
+
+  factory QuizResult.fromJson(Map<String, Object?> json) => _$QuizResultFromJson(json);
 }

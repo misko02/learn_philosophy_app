@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
 import 'package:learn_philosophy_app/src/Services/api_service.dart';
 
@@ -17,24 +18,22 @@ class TopicListView extends ConsumerStatefulWidget {
 
 class _TopicListViewState extends ConsumerState<TopicListView> {
 
-Future<Topic> getTopic(int index) {
- return  ApiService.getTopicById(index).then((value) => value);
-}
-
   @override
   Widget build(BuildContext context) {
-    List<Topic> topics = ref.watch(topicsListProvider).valueOrNull ?? [];
-    return ListView.builder(
+    List<Topic> topics = ref.watch(topicsListProvider).value??[];
+    return topics.isNotEmpty?ListView.builder(
       itemCount: topics.length,
       itemBuilder: (context, index) {
       return ListTile(
         title: Text(topics[index].title, style: const TextStyle(fontSize: 24, color: Colors.white)),
         subtitle: Text(topics[index].description, style: const TextStyle(fontSize: 18, color: Colors.white)),
         onTap: () async {
-          ref.read(topicProvider.notifier).state = await ApiService.getTopicById(topics[index].topicId);
+          var box = await Hive.openBox<Topic>('Topics');
+          ref.read(topicProvider.notifier).state = box.get(index) ?? await ApiService.getTopicById(topics[index].topicId);
+          box.put(index, ref.read(topicProvider.notifier).state);
           Navigator.pushNamed(context, '/topic/');
         },
       );
-    });
+    }): const Center(child: CircularProgressIndicator());
   }
 }

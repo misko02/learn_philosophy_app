@@ -1,38 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'site.dart';
+part of 'quiz_result.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class SiteAdapter extends TypeAdapter<_$SiteImpl> {
+class QuizResultAdapter extends TypeAdapter<_$QuizResultImpl> {
   @override
-  final int typeId = 2;
+  final int typeId = 8;
 
   @override
-  _$SiteImpl read(BinaryReader reader) {
+  _$QuizResultImpl read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$SiteImpl(
-      id: fields[0] as int,
-      title: fields[1] as String,
-      content: fields[2] as String,
+    return _$QuizResultImpl(
+      correctAnswers: fields[0] as int,
+      wrongAnswers: fields[1] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, _$SiteImpl obj) {
+  void write(BinaryWriter writer, _$QuizResultImpl obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.content);
+      ..writeByte(0)
+      ..write(obj.correctAnswers)
+      ..writeByte(1)
+      ..write(obj.wrongAnswers);
   }
 
   @override
@@ -41,7 +38,7 @@ class SiteAdapter extends TypeAdapter<_$SiteImpl> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is SiteAdapter &&
+      other is QuizResultAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -50,15 +47,14 @@ class SiteAdapter extends TypeAdapter<_$SiteImpl> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SiteImpl _$$SiteImplFromJson(Map<String, dynamic> json) => _$SiteImpl(
-      id: (json['id'] as num).toInt(),
-      title: json['title'] as String? ?? '',
-      content: json['content'] as String? ?? '',
+_$QuizResultImpl _$$QuizResultImplFromJson(Map<String, dynamic> json) =>
+    _$QuizResultImpl(
+      correctAnswers: (json['correctAnswers'] as num).toInt(),
+      wrongAnswers: (json['wrongAnswers'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$SiteImplToJson(_$SiteImpl instance) =>
+Map<String, dynamic> _$$QuizResultImplToJson(_$QuizResultImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'content': instance.content,
+      'correctAnswers': instance.correctAnswers,
+      'wrongAnswers': instance.wrongAnswers,
     };

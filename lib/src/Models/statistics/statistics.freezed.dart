@@ -20,12 +20,30 @@ Statistics _$StatisticsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Statistics {
-  int get quizesTaken => throw _privateConstructorUsedError;
-  int get quizesPassed => throw _privateConstructorUsedError;
-  int get topicsFinished => throw _privateConstructorUsedError;
-  int get questionsAnswered => throw _privateConstructorUsedError;
-  int get correctAnswers => throw _privateConstructorUsedError;
-  int get wrongAnswers => throw _privateConstructorUsedError;
+  @HiveField(0)
+  dynamic get quizesTaken => throw _privateConstructorUsedError;
+  @HiveField(0)
+  set quizesTaken(dynamic value) => throw _privateConstructorUsedError;
+  @HiveField(1)
+  dynamic get quizesPassed => throw _privateConstructorUsedError;
+  @HiveField(1)
+  set quizesPassed(dynamic value) => throw _privateConstructorUsedError;
+  @HiveField(2)
+  dynamic get topicsFinished => throw _privateConstructorUsedError;
+  @HiveField(2)
+  set topicsFinished(dynamic value) => throw _privateConstructorUsedError;
+  @HiveField(3)
+  dynamic get questionsAnswered => throw _privateConstructorUsedError;
+  @HiveField(3)
+  set questionsAnswered(dynamic value) => throw _privateConstructorUsedError;
+  @HiveField(4)
+  dynamic get correctAnswers => throw _privateConstructorUsedError;
+  @HiveField(4)
+  set correctAnswers(dynamic value) => throw _privateConstructorUsedError;
+  @HiveField(5)
+  dynamic get wrongAnswers => throw _privateConstructorUsedError;
+  @HiveField(5)
+  set wrongAnswers(dynamic value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +58,12 @@ abstract class $StatisticsCopyWith<$Res> {
       _$StatisticsCopyWithImpl<$Res, Statistics>;
   @useResult
   $Res call(
-      {int quizesTaken,
-      int quizesPassed,
-      int topicsFinished,
-      int questionsAnswered,
-      int correctAnswers,
-      int wrongAnswers});
+      {@HiveField(0) dynamic quizesTaken,
+      @HiveField(1) dynamic quizesPassed,
+      @HiveField(2) dynamic topicsFinished,
+      @HiveField(3) dynamic questionsAnswered,
+      @HiveField(4) dynamic correctAnswers,
+      @HiveField(5) dynamic wrongAnswers});
 }
 
 /// @nodoc
@@ -61,38 +79,38 @@ class _$StatisticsCopyWithImpl<$Res, $Val extends Statistics>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? quizesTaken = null,
-    Object? quizesPassed = null,
-    Object? topicsFinished = null,
-    Object? questionsAnswered = null,
-    Object? correctAnswers = null,
-    Object? wrongAnswers = null,
+    Object? quizesTaken = freezed,
+    Object? quizesPassed = freezed,
+    Object? topicsFinished = freezed,
+    Object? questionsAnswered = freezed,
+    Object? correctAnswers = freezed,
+    Object? wrongAnswers = freezed,
   }) {
     return _then(_value.copyWith(
-      quizesTaken: null == quizesTaken
+      quizesTaken: freezed == quizesTaken
           ? _value.quizesTaken
           : quizesTaken // ignore: cast_nullable_to_non_nullable
-              as int,
-      quizesPassed: null == quizesPassed
+              as dynamic,
+      quizesPassed: freezed == quizesPassed
           ? _value.quizesPassed
           : quizesPassed // ignore: cast_nullable_to_non_nullable
-              as int,
-      topicsFinished: null == topicsFinished
+              as dynamic,
+      topicsFinished: freezed == topicsFinished
           ? _value.topicsFinished
           : topicsFinished // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionsAnswered: null == questionsAnswered
+              as dynamic,
+      questionsAnswered: freezed == questionsAnswered
           ? _value.questionsAnswered
           : questionsAnswered // ignore: cast_nullable_to_non_nullable
-              as int,
-      correctAnswers: null == correctAnswers
+              as dynamic,
+      correctAnswers: freezed == correctAnswers
           ? _value.correctAnswers
           : correctAnswers // ignore: cast_nullable_to_non_nullable
-              as int,
-      wrongAnswers: null == wrongAnswers
+              as dynamic,
+      wrongAnswers: freezed == wrongAnswers
           ? _value.wrongAnswers
           : wrongAnswers // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -106,12 +124,12 @@ abstract class _$$StatisticsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int quizesTaken,
-      int quizesPassed,
-      int topicsFinished,
-      int questionsAnswered,
-      int correctAnswers,
-      int wrongAnswers});
+      {@HiveField(0) dynamic quizesTaken,
+      @HiveField(1) dynamic quizesPassed,
+      @HiveField(2) dynamic topicsFinished,
+      @HiveField(3) dynamic questionsAnswered,
+      @HiveField(4) dynamic correctAnswers,
+      @HiveField(5) dynamic wrongAnswers});
 }
 
 /// @nodoc
@@ -125,97 +143,74 @@ class __$$StatisticsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? quizesTaken = null,
-    Object? quizesPassed = null,
-    Object? topicsFinished = null,
-    Object? questionsAnswered = null,
-    Object? correctAnswers = null,
-    Object? wrongAnswers = null,
+    Object? quizesTaken = freezed,
+    Object? quizesPassed = freezed,
+    Object? topicsFinished = freezed,
+    Object? questionsAnswered = freezed,
+    Object? correctAnswers = freezed,
+    Object? wrongAnswers = freezed,
   }) {
     return _then(_$StatisticsImpl(
-      quizesTaken: null == quizesTaken
-          ? _value.quizesTaken
-          : quizesTaken // ignore: cast_nullable_to_non_nullable
-              as int,
-      quizesPassed: null == quizesPassed
-          ? _value.quizesPassed
-          : quizesPassed // ignore: cast_nullable_to_non_nullable
-              as int,
-      topicsFinished: null == topicsFinished
-          ? _value.topicsFinished
-          : topicsFinished // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionsAnswered: null == questionsAnswered
-          ? _value.questionsAnswered
-          : questionsAnswered // ignore: cast_nullable_to_non_nullable
-              as int,
-      correctAnswers: null == correctAnswers
-          ? _value.correctAnswers
-          : correctAnswers // ignore: cast_nullable_to_non_nullable
-              as int,
-      wrongAnswers: null == wrongAnswers
-          ? _value.wrongAnswers
-          : wrongAnswers // ignore: cast_nullable_to_non_nullable
-              as int,
+      quizesTaken: freezed == quizesTaken ? _value.quizesTaken! : quizesTaken,
+      quizesPassed:
+          freezed == quizesPassed ? _value.quizesPassed! : quizesPassed,
+      topicsFinished:
+          freezed == topicsFinished ? _value.topicsFinished! : topicsFinished,
+      questionsAnswered: freezed == questionsAnswered
+          ? _value.questionsAnswered!
+          : questionsAnswered,
+      correctAnswers:
+          freezed == correctAnswers ? _value.correctAnswers! : correctAnswers,
+      wrongAnswers:
+          freezed == wrongAnswers ? _value.wrongAnswers! : wrongAnswers,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 3, adapterName: 'StatisticsAdapter')
 class _$StatisticsImpl implements _Statistics {
-  const _$StatisticsImpl(
-      {required this.quizesTaken,
-      required this.quizesPassed,
-      required this.topicsFinished,
-      required this.questionsAnswered,
-      required this.correctAnswers,
-      required this.wrongAnswers});
+  _$StatisticsImpl(
+      {@HiveField(0) this.quizesTaken = 0,
+      @HiveField(1) this.quizesPassed = 0,
+      @HiveField(2) this.topicsFinished = 0,
+      @HiveField(3) this.questionsAnswered = 0,
+      @HiveField(4) this.correctAnswers = 0,
+      @HiveField(5) this.wrongAnswers = 0});
 
   factory _$StatisticsImpl.fromJson(Map<String, dynamic> json) =>
       _$$StatisticsImplFromJson(json);
 
   @override
-  final int quizesTaken;
+  @JsonKey()
+  @HiveField(0)
+  dynamic quizesTaken;
   @override
-  final int quizesPassed;
+  @JsonKey()
+  @HiveField(1)
+  dynamic quizesPassed;
   @override
-  final int topicsFinished;
+  @JsonKey()
+  @HiveField(2)
+  dynamic topicsFinished;
   @override
-  final int questionsAnswered;
+  @JsonKey()
+  @HiveField(3)
+  dynamic questionsAnswered;
   @override
-  final int correctAnswers;
+  @JsonKey()
+  @HiveField(4)
+  dynamic correctAnswers;
   @override
-  final int wrongAnswers;
+  @JsonKey()
+  @HiveField(5)
+  dynamic wrongAnswers;
 
   @override
   String toString() {
     return 'Statistics(quizesTaken: $quizesTaken, quizesPassed: $quizesPassed, topicsFinished: $topicsFinished, questionsAnswered: $questionsAnswered, correctAnswers: $correctAnswers, wrongAnswers: $wrongAnswers)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StatisticsImpl &&
-            (identical(other.quizesTaken, quizesTaken) ||
-                other.quizesTaken == quizesTaken) &&
-            (identical(other.quizesPassed, quizesPassed) ||
-                other.quizesPassed == quizesPassed) &&
-            (identical(other.topicsFinished, topicsFinished) ||
-                other.topicsFinished == topicsFinished) &&
-            (identical(other.questionsAnswered, questionsAnswered) ||
-                other.questionsAnswered == questionsAnswered) &&
-            (identical(other.correctAnswers, correctAnswers) ||
-                other.correctAnswers == correctAnswers) &&
-            (identical(other.wrongAnswers, wrongAnswers) ||
-                other.wrongAnswers == wrongAnswers));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, quizesTaken, quizesPassed,
-      topicsFinished, questionsAnswered, correctAnswers, wrongAnswers);
 
   @JsonKey(ignore: true)
   @override
@@ -232,29 +227,47 @@ class _$StatisticsImpl implements _Statistics {
 }
 
 abstract class _Statistics implements Statistics {
-  const factory _Statistics(
-      {required final int quizesTaken,
-      required final int quizesPassed,
-      required final int topicsFinished,
-      required final int questionsAnswered,
-      required final int correctAnswers,
-      required final int wrongAnswers}) = _$StatisticsImpl;
+  factory _Statistics(
+      {@HiveField(0) dynamic quizesTaken,
+      @HiveField(1) dynamic quizesPassed,
+      @HiveField(2) dynamic topicsFinished,
+      @HiveField(3) dynamic questionsAnswered,
+      @HiveField(4) dynamic correctAnswers,
+      @HiveField(5) dynamic wrongAnswers}) = _$StatisticsImpl;
 
   factory _Statistics.fromJson(Map<String, dynamic> json) =
       _$StatisticsImpl.fromJson;
 
   @override
-  int get quizesTaken;
+  @HiveField(0)
+  dynamic get quizesTaken;
+  @HiveField(0)
+  set quizesTaken(dynamic value);
   @override
-  int get quizesPassed;
+  @HiveField(1)
+  dynamic get quizesPassed;
+  @HiveField(1)
+  set quizesPassed(dynamic value);
   @override
-  int get topicsFinished;
+  @HiveField(2)
+  dynamic get topicsFinished;
+  @HiveField(2)
+  set topicsFinished(dynamic value);
   @override
-  int get questionsAnswered;
+  @HiveField(3)
+  dynamic get questionsAnswered;
+  @HiveField(3)
+  set questionsAnswered(dynamic value);
   @override
-  int get correctAnswers;
+  @HiveField(4)
+  dynamic get correctAnswers;
+  @HiveField(4)
+  set correctAnswers(dynamic value);
   @override
-  int get wrongAnswers;
+  @HiveField(5)
+  dynamic get wrongAnswers;
+  @HiveField(5)
+  set wrongAnswers(dynamic value);
   @override
   @JsonKey(ignore: true)
   _$$StatisticsImplCopyWith<_$StatisticsImpl> get copyWith =>

@@ -20,9 +20,13 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Question {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String? get content => throw _privateConstructorUsedError;
+  @HiveField(2)
   List<String> get answers => throw _privateConstructorUsedError;
+  @HiveField(3)
   int get correctAnswerIndex => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +41,10 @@ abstract class $QuestionCopyWith<$Res> {
       _$QuestionCopyWithImpl<$Res, Question>;
   @useResult
   $Res call(
-      {int id, String content, List<String> answers, int correctAnswerIndex});
+      {@HiveField(0) int id,
+      @HiveField(1) String? content,
+      @HiveField(2) List<String> answers,
+      @HiveField(3) int correctAnswerIndex});
 }
 
 /// @nodoc
@@ -54,7 +61,7 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
   @override
   $Res call({
     Object? id = null,
-    Object? content = null,
+    Object? content = freezed,
     Object? answers = null,
     Object? correctAnswerIndex = null,
   }) {
@@ -63,10 +70,10 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       answers: null == answers
           ? _value.answers
           : answers // ignore: cast_nullable_to_non_nullable
@@ -88,7 +95,10 @@ abstract class _$$QuestionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String content, List<String> answers, int correctAnswerIndex});
+      {@HiveField(0) int id,
+      @HiveField(1) String? content,
+      @HiveField(2) List<String> answers,
+      @HiveField(3) int correctAnswerIndex});
 }
 
 /// @nodoc
@@ -103,7 +113,7 @@ class __$$QuestionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? content = null,
+    Object? content = freezed,
     Object? answers = null,
     Object? correctAnswerIndex = null,
   }) {
@@ -112,10 +122,10 @@ class __$$QuestionImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       answers: null == answers
           ? _value._answers
           : answers // ignore: cast_nullable_to_non_nullable
@@ -130,23 +140,30 @@ class __$$QuestionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$QuestionImpl implements _Question {
-  const _$QuestionImpl(
-      {required this.id,
-      required this.content,
-      required final List<String> answers,
-      required this.correctAnswerIndex})
-      : _answers = answers;
+@HiveType(typeId: 0, adapterName: 'QuestionAdapter')
+class _$QuestionImpl extends _Question {
+  _$QuestionImpl(
+      {@HiveField(0) required this.id,
+      @HiveField(1) this.content = '',
+      @HiveField(2) final List<String> answers = const [],
+      @HiveField(3) this.correctAnswerIndex = 0})
+      : _answers = answers,
+        super._();
 
   factory _$QuestionImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
-  final String content;
+  @JsonKey()
+  @HiveField(1)
+  final String? content;
   final List<String> _answers;
   @override
+  @JsonKey()
+  @HiveField(2)
   List<String> get answers {
     if (_answers is EqualUnmodifiableListView) return _answers;
     // ignore: implicit_dynamic_type
@@ -154,6 +171,8 @@ class _$QuestionImpl implements _Question {
   }
 
   @override
+  @JsonKey()
+  @HiveField(3)
   final int correctAnswerIndex;
 
   @override
@@ -192,23 +211,28 @@ class _$QuestionImpl implements _Question {
   }
 }
 
-abstract class _Question implements Question {
-  const factory _Question(
-      {required final int id,
-      required final String content,
-      required final List<String> answers,
-      required final int correctAnswerIndex}) = _$QuestionImpl;
+abstract class _Question extends Question {
+  factory _Question(
+      {@HiveField(0) required final int id,
+      @HiveField(1) final String? content,
+      @HiveField(2) final List<String> answers,
+      @HiveField(3) final int correctAnswerIndex}) = _$QuestionImpl;
+  _Question._() : super._();
 
   factory _Question.fromJson(Map<String, dynamic> json) =
       _$QuestionImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
-  String get content;
+  @HiveField(1)
+  String? get content;
   @override
+  @HiveField(2)
   List<String> get answers;
   @override
+  @HiveField(3)
   int get correctAnswerIndex;
   @override
   @JsonKey(ignore: true)

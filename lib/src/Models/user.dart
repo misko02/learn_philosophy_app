@@ -1,28 +1,21 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 
-class User{
-  String userId;
-  String username;
-  String password;
-  String email;
-  Statistics userStatistics;
+part 'user.freezed.dart';
+part 'user.g.dart';
 
-  User({
-    required this.userId,
-    required this.username,
-    required this.password,
-    required this.email,
-    required this.userStatistics
-  });
+@unfreezed
+class User extends HiveObject with _$User{
+  @HiveType(typeId: 6, adapterName: 'UserAdapter')
+  factory User({
+    @HiveField(0) required String username,
+    @HiveField(1) required String email,
+    @HiveField(2) required String password,
+    @HiveField(3) required Statistics statistics
+  }) = _User;
 
-  factory User.fromJson(Map<String, Object?> json){
-    return User(
-      userId: json['userId'] as String,
-      username: json['username'] as String,
-      password: json['password'] as String,
-      email: json['email'] as String,
-      userStatistics: Statistics.fromJson(json['userStatistics'] as Map<String, Object?>)
-    );
-  }
+  User._();
 
+  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
+
 
 
 
@@ -13,10 +15,10 @@ class StatisticsView extends ConsumerStatefulWidget {
 }
 
 class _StatisticsViewState extends ConsumerState<StatisticsView> {
-  
+  final box = Hive.box<Statistics>('Statistics');
   @override
   Widget build(BuildContext context) {
-    Statistics placeholder = ref.watch(statisticsProvider);
+    Statistics stats = ref.watch(statisticsProvider);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +33,7 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
                 children: [
                   const Text("Quizes attempts", style: TextStyle(fontSize: 18, color: Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.quizesTaken.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+                  Text(stats.quizesTaken.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
                 ],
               ),
               const SizedBox(width: 20),
@@ -39,7 +41,7 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
                 children: [
                   const Text("Quizes passed", style: TextStyle(fontSize: 18, color: Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.quizesPassed.toString(), style: const TextStyle(fontSize: 18, color:Colors.white),)
+                  Text(stats.quizesPassed.toString(), style: const TextStyle(fontSize: 18, color:Colors.white),)
                 ],
               ),
             ],
@@ -52,7 +54,7 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
                 children: [
                   const Text("Questions answered", style: TextStyle(fontSize: 18, color:Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.questionsAnswered.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+                  Text(stats.questionsAnswered.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
                 ],
               ),
               const SizedBox(width: 20),
@@ -60,7 +62,7 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
                 children: [
                   const Text("Topics finished", style: TextStyle(fontSize: 18, color:Colors.white),),
                   const SizedBox(height: 10),
-                  Text(placeholder.topicsFinished.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+                  Text(stats.topicsFinished.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
                 ],
               ),
             ],
@@ -73,7 +75,7 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
               children: [
                 const Text("Correct answers", style: TextStyle(fontSize: 18, color: Colors.white),),
                 const SizedBox(height: 10),
-                Text(placeholder.correctAnswers.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+                Text(stats.correctAnswers.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
               ],
             ),
             const SizedBox(width: 20),
@@ -81,7 +83,7 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
               children: [
                 const Text("Wrong answers", style: TextStyle(fontSize: 18, color: Colors.white),),
                 const SizedBox(height: 10),
-                Text(placeholder.wrongAnswers.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
+                Text(stats.wrongAnswers.toString(), style: const TextStyle(fontSize: 18, color: Colors.white),)
               ],
             ),
             ],

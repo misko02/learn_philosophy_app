@@ -5,7 +5,7 @@ import 'package:learn_philosophy_app/src/Models/quiz/quiz.dart';
 import '../Models/question/question.dart';
 
 final quizProvider = StateProvider((ref) => 
-const Quiz(
+Quiz(
   quizId: 0,
   title: "Quiz",
   questions: [

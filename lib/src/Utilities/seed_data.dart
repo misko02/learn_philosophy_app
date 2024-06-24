@@ -32,7 +32,7 @@ class SeedData {
         quizId: 0,
         title: 'Introduction to Philosophy Quiz',
         questions: [
-          const Question(
+           Question(
             id: 0,
             content: 'Who was the first philosopher?',
             answers: [
@@ -43,7 +43,7 @@ class SeedData {
             ], 
             correctAnswerIndex: 0
           ),
-          const Question(
+           Question(
             id: 1,
             content: 'Who were the Presocratics?',
             answers: [
@@ -56,7 +56,7 @@ class SeedData {
           ),
           
         ],
-        result: QuizResult(0,0),
+        result: QuizResult(correctAnswers: 0,wrongAnswers: 0),
       ), 
     ),
     Topic(
@@ -84,7 +84,7 @@ class SeedData {
         quizId: 1,
         title:'Epistemology Quiz',
         questions: [
-          const Question(
+           Question(
             id: 0,
             content: 'Who are some of the most known idealists?',
             answers: [
@@ -95,7 +95,7 @@ class SeedData {
             ],
             correctAnswerIndex: 0
           ),
-          const Question(
+           Question(
             id: 1,
             content: 'What is empiricism?',
             answers: [
@@ -107,7 +107,7 @@ class SeedData {
             correctAnswerIndex: 0
           ),
         ],
-        result: QuizResult(0,0),   
+        result: QuizResult(correctAnswers: 0, wrongAnswers: 0),   
          )
     ),
     Topic(
@@ -135,7 +135,7 @@ class SeedData {
         quizId: 2,
         title: 'Metaphysics Quiz',
         questions: [
-          const Question(
+           Question(
             id: 0,
             content: 'What is materialism?',
             answers: [
@@ -146,7 +146,7 @@ class SeedData {
             ],
             correctAnswerIndex: 2
           ),
-          const Question(
+          Question(
             id: 1,
             content: 'What is dualism?',
             answers: [
@@ -158,7 +158,7 @@ class SeedData {
             correctAnswerIndex: 1
           ),
           ],
-        result: QuizResult(0,0),
+        result: QuizResult(correctAnswers: 0, wrongAnswers: 0),
          )
     ),
     Topic(
@@ -177,11 +177,11 @@ class SeedData {
           content: 'Utilitarianism is a consequentialist ethical theory that is based on the idea that the best action is the one that maximizes happiness or pleasure and minimizes suffering or pain. Utilitarianism is a consequentialist ethical theory that is based on the idea that the best action is the one that maximizes happiness or pleasure and minimizes suffering or pain.'
         )
       ],
-      quiz: const Quiz(
+      quiz: Quiz(
         quizId: 3,
         title: 'Ethics Quiz',
         questions: [
-          Question(
+           Question(
             id: 0,
             content: 'What is Kantian ethics?',
             answers: [
@@ -192,7 +192,7 @@ class SeedData {
             ],
             correctAnswerIndex: 0
           ),
-          Question(
+           Question(
             id: 1,
             content: 'What is utilitarianism?',
             answers: [
@@ -222,11 +222,11 @@ class SeedData {
           content: 'Propositional logic is a system of logic that is based on the idea that there are two basic types of statements: propositions and connectives. Propositions are statements that can be either true or false. Connectives are words that connect propositions together.'
         )
       ],
-      quiz: const Quiz(
+      quiz: Quiz(
         quizId: 4,
         title: 'Logic Quiz',
         questions: [
-          Question(
+           Question(
             id: 0,
             content: 'What is Aristotelian logic?',
             answers: [
@@ -237,7 +237,7 @@ class SeedData {
             ],
             correctAnswerIndex: 0
           ),
-          Question(
+           Question(
             id: 1,
             content: 'What is propositional logic?',
             answers: [

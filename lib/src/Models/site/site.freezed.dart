@@ -20,8 +20,11 @@ Site _$SiteFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Site {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get content => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +37,10 @@ abstract class $SiteCopyWith<$Res> {
   factory $SiteCopyWith(Site value, $Res Function(Site) then) =
       _$SiteCopyWithImpl<$Res, Site>;
   @useResult
-  $Res call({int id, String title, String content});
+  $Res call(
+      {@HiveField(0) int id,
+      @HiveField(1) String title,
+      @HiveField(2) String content});
 }
 
 /// @nodoc
@@ -78,7 +84,10 @@ abstract class _$$SiteImplCopyWith<$Res> implements $SiteCopyWith<$Res> {
       __$$SiteImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String content});
+  $Res call(
+      {@HiveField(0) int id,
+      @HiveField(1) String title,
+      @HiveField(2) String content});
 }
 
 /// @nodoc
@@ -114,17 +123,26 @@ class __$$SiteImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 2, adapterName: 'SiteAdapter')
 class _$SiteImpl implements _Site {
-  _$SiteImpl({required this.id, required this.title, required this.content});
+  _$SiteImpl(
+      {@HiveField(0) required this.id,
+      @HiveField(1) this.title = '',
+      @HiveField(2) this.content = ''});
 
   factory _$SiteImpl.fromJson(Map<String, dynamic> json) =>
       _$$SiteImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @JsonKey()
+  @HiveField(1)
   final String title;
   @override
+  @JsonKey()
+  @HiveField(2)
   final String content;
 
   @override
@@ -162,17 +180,20 @@ class _$SiteImpl implements _Site {
 
 abstract class _Site implements Site {
   factory _Site(
-      {required final int id,
-      required final String title,
-      required final String content}) = _$SiteImpl;
+      {@HiveField(0) required final int id,
+      @HiveField(1) final String title,
+      @HiveField(2) final String content}) = _$SiteImpl;
 
   factory _Site.fromJson(Map<String, dynamic> json) = _$SiteImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get title;
   @override
+  @HiveField(2)
   String get content;
   @override
   @JsonKey(ignore: true)

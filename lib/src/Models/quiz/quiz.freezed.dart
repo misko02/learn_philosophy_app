@@ -20,12 +20,24 @@ Quiz _$QuizFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Quiz {
+  @HiveField(0)
   int get quizId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get description => throw _privateConstructorUsedError;
+  @HiveField(3)
   List<Question> get questions => throw _privateConstructorUsedError;
+  @HiveField(3)
+  set questions(List<Question> value) => throw _privateConstructorUsedError;
+  @HiveField(4)
   bool get finished => throw _privateConstructorUsedError;
+  @HiveField(4)
+  set finished(bool value) => throw _privateConstructorUsedError;
+  @HiveField(5)
   QuizResult? get result => throw _privateConstructorUsedError;
+  @HiveField(5)
+  set result(QuizResult? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +50,14 @@ abstract class $QuizCopyWith<$Res> {
       _$QuizCopyWithImpl<$Res, Quiz>;
   @useResult
   $Res call(
-      {int quizId,
-      String title,
-      String? description,
-      List<Question> questions,
-      bool finished,
-      QuizResult? result});
+      {@HiveField(0) int quizId,
+      @HiveField(1) String title,
+      @HiveField(2) String? description,
+      @HiveField(3) List<Question> questions,
+      @HiveField(4) bool finished,
+      @HiveField(5) QuizResult? result});
+
+  $QuizResultCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -93,6 +107,18 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
               as QuizResult?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $QuizResultCopyWith<$Res>? get result {
+    if (_value.result == null) {
+      return null;
+    }
+
+    return $QuizResultCopyWith<$Res>(_value.result!, (value) {
+      return _then(_value.copyWith(result: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -103,12 +129,15 @@ abstract class _$$QuizImplCopyWith<$Res> implements $QuizCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int quizId,
-      String title,
-      String? description,
-      List<Question> questions,
-      bool finished,
-      QuizResult? result});
+      {@HiveField(0) int quizId,
+      @HiveField(1) String title,
+      @HiveField(2) String? description,
+      @HiveField(3) List<Question> questions,
+      @HiveField(4) bool finished,
+      @HiveField(5) QuizResult? result});
+
+  @override
+  $QuizResultCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -142,7 +171,7 @@ class __$$QuizImplCopyWithImpl<$Res>
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       questions: null == questions
-          ? _value._questions
+          ? _value.questions
           : questions // ignore: cast_nullable_to_non_nullable
               as List<Question>,
       finished: null == finished
@@ -159,65 +188,45 @@ class __$$QuizImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$QuizImpl implements _Quiz {
-  const _$QuizImpl(
-      {required this.quizId,
-      required this.title,
-      this.description,
-      final List<Question> questions = const [],
-      this.finished = false,
-      this.result})
-      : _questions = questions;
+@HiveType(typeId: 1, adapterName: 'QuizAdapter')
+class _$QuizImpl extends _Quiz {
+  _$QuizImpl(
+      {@HiveField(0) required this.quizId,
+      @HiveField(1) required this.title,
+      @HiveField(2) this.description,
+      @HiveField(3) this.questions = const [],
+      @HiveField(4) this.finished = false,
+      @HiveField(5) this.result})
+      : super._();
 
   factory _$QuizImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuizImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int quizId;
   @override
+  @HiveField(1)
   final String title;
   @override
+  @HiveField(2)
   final String? description;
-  final List<Question> _questions;
   @override
   @JsonKey()
-  List<Question> get questions {
-    if (_questions is EqualUnmodifiableListView) return _questions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_questions);
-  }
-
+  @HiveField(3)
+  List<Question> questions;
   @override
   @JsonKey()
-  final bool finished;
+  @HiveField(4)
+  bool finished;
   @override
-  final QuizResult? result;
+  @HiveField(5)
+  QuizResult? result;
 
   @override
   String toString() {
     return 'Quiz(quizId: $quizId, title: $title, description: $description, questions: $questions, finished: $finished, result: $result)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$QuizImpl &&
-            (identical(other.quizId, quizId) || other.quizId == quizId) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            const DeepCollectionEquality()
-                .equals(other._questions, _questions) &&
-            (identical(other.finished, finished) ||
-                other.finished == finished) &&
-            (identical(other.result, result) || other.result == result));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, quizId, title, description,
-      const DeepCollectionEquality().hash(_questions), finished, result);
 
   @JsonKey(ignore: true)
   @override
@@ -233,29 +242,42 @@ class _$QuizImpl implements _Quiz {
   }
 }
 
-abstract class _Quiz implements Quiz {
-  const factory _Quiz(
-      {required final int quizId,
-      required final String title,
-      final String? description,
-      final List<Question> questions,
-      final bool finished,
-      final QuizResult? result}) = _$QuizImpl;
+abstract class _Quiz extends Quiz {
+  factory _Quiz(
+      {@HiveField(0) required final int quizId,
+      @HiveField(1) required final String title,
+      @HiveField(2) final String? description,
+      @HiveField(3) List<Question> questions,
+      @HiveField(4) bool finished,
+      @HiveField(5) QuizResult? result}) = _$QuizImpl;
+  _Quiz._() : super._();
 
   factory _Quiz.fromJson(Map<String, dynamic> json) = _$QuizImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get quizId;
   @override
+  @HiveField(1)
   String get title;
   @override
+  @HiveField(2)
   String? get description;
   @override
+  @HiveField(3)
   List<Question> get questions;
+  @HiveField(3)
+  set questions(List<Question> value);
   @override
+  @HiveField(4)
   bool get finished;
+  @HiveField(4)
+  set finished(bool value);
   @override
+  @HiveField(5)
   QuizResult? get result;
+  @HiveField(5)
+  set result(QuizResult? value);
   @override
   @JsonKey(ignore: true)
   _$$QuizImplCopyWith<_$QuizImpl> get copyWith =>

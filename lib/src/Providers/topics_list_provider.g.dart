@@ -6,7 +6,7 @@ part of 'topics_list_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$topicsListHash() => r'3fd92244d75c6b5073850f33356dc87de76ea15d';
+String _$topicsListHash() => r'aaa3ea575cb7628312b0f2a07977f0e98a3eb3f3';
 
 /// See also [TopicsList].
 @ProviderFor(TopicsList)
