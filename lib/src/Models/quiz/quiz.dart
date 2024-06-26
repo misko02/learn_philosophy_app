@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
 import '../question/question.dart';
-import '../quiz_result.dart';
+import '../quiz_result/quiz_result.dart';
 
 part 'quiz.freezed.dart';
 part 'quiz.g.dart';

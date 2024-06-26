@@ -24,6 +24,7 @@ dependencies:
   hive_generator: ^2.0.1
   http: ^1.2.1
   json_annotation: ^4.9.0
+  logger: ^2.3.0
   logging: ^1.2.0
   riverpod_annotation: ^2.3.5
   settings_ui: ^2.0.2

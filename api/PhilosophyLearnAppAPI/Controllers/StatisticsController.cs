@@ -12,7 +12,6 @@ using PhilosophyLearnAppAPI.Models;
 namespace PhilosophyLearnAppAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     [ApiController]
     public class StatisticsController : ControllerBase
     {

@@ -17,7 +17,14 @@
         "web": true,
         "windows": true,
         ".gitignore": true,
-        "api": true
+        "api": true,
+        ".flutter-plugins": true,
+        ".flutter-plugins-dependencies": true,
+        "l10n.yaml": true,
+        "learn_philosophy_app.hive": true,
+        "learn_philosophy_app.iml": true,
+        "learn_philosophy_app.lock": true,
+        "custom_lint.log": true
     },
     "hide-files.files": [
         ".dart_tool",
@@ -31,6 +38,13 @@
         "web",
         "windows",
         ".gitignore",
-        "api"
+        "api",
+        ".flutter-plugins",
+        ".flutter-plugins-dependencies",
+        "l10n.yaml",
+        "learn_philosophy_app.hive",
+        "learn_philosophy_app.iml",
+        "learn_philosophy_app.lock",
+        "custom_lint.log"
     ]
 }

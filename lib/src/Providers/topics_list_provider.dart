@@ -11,7 +11,7 @@ part 'topics_list_provider.g.dart';
 class TopicsList extends _$TopicsList {
   @override
    Future<List<Topic>> build() async{
-    var box = Hive.box<Topic>('Topics');
+    var box = await Hive.openBox<Topic>('Topics');
     if(box.values.isNotEmpty)  return box.values.toList();
     box.addAll(await ApiService.getTopics());
     return box.values.toList();

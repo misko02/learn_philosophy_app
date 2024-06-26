@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
+import 'package:logger/logger.dart';
 
+import '../Models/quiz/quiz.dart';
 import '../Providers/quiz_provider.dart';
 
 
@@ -62,7 +64,7 @@ class _TopicViewState extends ConsumerState<TopicView> {
               child: const Text("Try Yourself"),
               onPressed: () {
                 ref.read(statisticsProvider.notifier).takeQuiz();
-                ref.read(quizProvider.notifier).state = ref.read(quizProvider.notifier).state;
+                ref.read(quizProvider.notifier).state = topic.quiz ?? Quiz(quizId: 0,title: "");
                 Navigator.pushNamed(context, '/quiz/');
                 setState(() {
                 });

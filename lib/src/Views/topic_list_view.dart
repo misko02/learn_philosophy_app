@@ -3,9 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
 import 'package:learn_philosophy_app/src/Services/api_service.dart';
+import 'package:logger/logger.dart';
 
 import '../Models/topic/topic.dart';
 import '../Providers/topics_list_provider.dart';
+
+final logger = Logger();
+
 
 class TopicListView extends ConsumerStatefulWidget {
   const TopicListView({super.key});
@@ -29,8 +33,8 @@ class _TopicListViewState extends ConsumerState<TopicListView> {
         subtitle: Text(topics[index].description, style: const TextStyle(fontSize: 18, color: Colors.white)),
         onTap: () async {
           var box = await Hive.openBox<Topic>('Topics');
-          ref.read(topicProvider.notifier).state = box.get(index) ?? await ApiService.getTopicById(topics[index].topicId);
-          box.put(index, ref.read(topicProvider.notifier).state);
+          ref.read(topicProvider.notifier).state = box.get(topics[index].topicId) ?? await ApiService.getTopicById(topics[index].topicId);
+          box.put(topics[index].topicId, ref.read(topicProvider.notifier).state);
           Navigator.pushNamed(context, '/topic/');
         },
       );

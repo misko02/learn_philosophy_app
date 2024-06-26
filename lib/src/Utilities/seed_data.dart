@@ -1,4 +1,4 @@
-import 'package:learn_philosophy_app/src/Models/quiz_result.dart';
+import 'package:learn_philosophy_app/src/Models/quiz_result/quiz_result.dart';
 import 'package:learn_philosophy_app/src/Models/topic/topic.dart';
 
 import '../Models/question/question.dart';

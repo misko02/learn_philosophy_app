@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:logging/logging.dart';
+import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 import 'package:learn_philosophy_app/src/Utilities/seed_data.dart';
@@ -13,11 +13,11 @@ class ApiService {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      connectTimeout: const Duration(seconds: 2),
-      receiveTimeout: const Duration(seconds: 2),
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 3),
     )
   );
-  static Logger logger = Logger('ApiService');
+  static Logger logger = Logger();
 
  
   static Future<List<Topic>> getTopics() async {
@@ -33,7 +33,7 @@ class ApiService {
     }
      catch (e) {
       topics = SeedData.seedTopics;
-      logger.log(Level.WARNING, e.toString());
+      logger.e(e.toString());
     }
     return topics;
   } 
@@ -42,14 +42,15 @@ class ApiService {
     try{
       final response = await dio.get('/topics/$id');
       if (response.statusCode == 200) {
-        topic = Topic.fromJson(jsonDecode(response.data));
+        topic = Topic.fromJson(response.data);
+
       } else {
         throw "Can't get topic.";
       }
     }
     catch (e) {
       topic = SeedData.seedTopics.firstWhere((element) => element.topicId == id);
-      logger.log(Level.WARNING, e.toString());
+      logger.e(e.toString());
     }
     return topic;
   }
@@ -65,7 +66,7 @@ class ApiService {
     } 
     catch (e) {
       statistics = Statistics();
-      logger.log(Level.WARNING, e.toString());
+      logger.e(e.toString());
     }
     return statistics;
   }

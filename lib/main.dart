@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:learn_philosophy_app/src/Models/quiz_result.dart';
+import 'package:learn_philosophy_app/src/Models/quiz_result/quiz_result.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 
 import 'src/Models/question/question.dart';
 import 'src/Models/quiz/quiz.dart';
 import 'src/Models/site/site.dart';
 import 'src/Models/topic/topic.dart';
-import 'src/Models/user.dart';
+import 'src/Models/user/user.dart';
 import 'src/app.dart';
 
 void main() async {

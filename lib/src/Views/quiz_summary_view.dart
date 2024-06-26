@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_philosophy_app/src/Models/quiz_result/quiz_result.dart';
 
 import '../Providers/result_provider.dart';
 
@@ -17,6 +18,7 @@ class QuizSummaryView extends ConsumerWidget {
             IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
+                ref.read(resultProvider.notifier).state = QuizResult(correctAnswers: 0, wrongAnswers: 0);
                 Navigator.popUntil(context, ModalRoute.withName('/'));
               },
             ),

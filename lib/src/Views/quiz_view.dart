@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_philosophy_app/src/Models/quiz_result.dart';
+import 'package:learn_philosophy_app/src/Models/quiz_result/quiz_result.dart';
 import 'package:learn_philosophy_app/src/Providers/quiz_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/result_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';

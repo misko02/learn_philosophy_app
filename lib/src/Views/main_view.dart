@@ -44,6 +44,13 @@ class _MainViewState extends ConsumerState<MainView> {
             ),
           ),
         title: const Text('Learn Philosophy'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              Hive.deleteFromDisk();
+            },
+          ),],
       ),
       drawer: Drawer(
         child: ListView(
@@ -83,11 +90,11 @@ class _MainViewState extends ConsumerState<MainView> {
               },
             ),
             ListTile(
-              title: const Text("Stastics"),
+              title: const Text("Statistics"),
               onTap: () async {
                 var box = await Hive.openBox<Statistics>('Statistics');
-                ref.read(statisticsProvider.notifier).state = box.get(0) ?? await ApiService.getStatistics();
-                box.put(0, ref.read(statisticsProvider.notifier).state);
+                ref.read(statisticsProvider.notifier).updateStatistics(box.get(0) ?? await ApiService.getStatistics());
+                box.put(0, ref.watch(statisticsProvider));
                 setState(() {
                   widget.route = "/stastics";
                 });
@@ -97,7 +104,7 @@ class _MainViewState extends ConsumerState<MainView> {
           ],
         ),
       ),
-      body: SafeArea(child:routes[widget.route]??const HomeView()),
+      body: SafeArea(child:routes[widget.route] ?? const HomeView()),
       );
   }
 }
