@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'topics_list_provider.dart';
+part of 'quiz_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$topicsListHash() => r'45b393bb4332e5704c738cd2a76aadabd0cefae7';
+String _$quizStateHash() => r'6d3302768e16ac3231424455a75128a115416440';
 
-/// See also [TopicsList].
-@ProviderFor(TopicsList)
-final topicsListProvider =
-    AutoDisposeAsyncNotifierProvider<TopicsList, List<Topic>>.internal(
-  TopicsList.new,
-  name: r'topicsListProvider',
+/// See also [QuizState].
+@ProviderFor(QuizState)
+final quizStateProvider =
+    AutoDisposeAsyncNotifierProvider<QuizState, Quiz>.internal(
+  QuizState.new,
+  name: r'quizStateProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$topicsListHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$quizStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$TopicsList = AutoDisposeAsyncNotifier<List<Topic>>;
+typedef _$QuizState = AutoDisposeAsyncNotifier<Quiz>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

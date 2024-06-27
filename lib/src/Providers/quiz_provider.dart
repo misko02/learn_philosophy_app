@@ -1,46 +1,35 @@
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learn_philosophy_app/src/Models/quiz/quiz.dart';
+import 'package:logger/logger.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../Models/question/question.dart';
+import '../Services/api_service.dart';
 
-final quizProvider = StateProvider((ref) => 
-Quiz(
-  quizId: 0,
-  title: "Quiz",
-  questions: [
-    Question(
-      id: 0,
-      content: "Question 1",
-      answers: [
-        "Answer 1",
-        "Answer 2",
-        "Answer 3",
-        "Answer 4",
-      ],
-      correctAnswerIndex: 0
-    ),
-    Question(
-      id: 1,
-      content: "Question 2",
-      answers: [
-        "Answer 1",
-        "Answer 2",
-        "Answer 3",
-        "Answer 4",
-      ],
-      correctAnswerIndex: 1
-    ),
-    Question(
-      id: 2,
-      content: "Question 3",
-      answers: [
-        "Answer 1",
-        "Answer 2",
-        "Answer 3",
-        "Answer 4",
-      ],
-      correctAnswerIndex: 2
-    ),
-  ]
-  ));
+part 'quiz_provider.g.dart';
+
+  final logger = Logger();
+
+  @riverpod
+  class QuizState extends _$QuizState {
+    @override
+    Future<Quiz> build() async{
+      var box = await Hive.openBox<Quiz>('Quizzes');
+      if(box.get('quiz') != null)  return box.get('quiz')!;                   
+      box.put('quiz', await ApiService.getQuizById(0));
+      state = AsyncData(box.get('quiz')!);
+      return box.get('quiz')!;
+    }
+
+    Future<void> takeQuiz(int id) async{
+      try{
+        if(!Hive.isBoxOpen('Quizzes')) await Hive.openBox<Quiz>('Quizzes');
+        var box = Hive.box<Quiz>('Quizzes');
+        var quiz = await ApiService.getQuizById(id);
+        state = AsyncData(quiz);
+        box.put('quiz',state.value!);
+      }
+      on Exception catch(e){
+        logger.e(e.toString());
+      }
+    }
+  }

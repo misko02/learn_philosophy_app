@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
-import 'package:logger/logger.dart';
 
-import '../Models/quiz/quiz.dart';
 import '../Providers/quiz_provider.dart';
 
 
@@ -63,8 +61,10 @@ class _TopicViewState extends ConsumerState<TopicView> {
             TextButton(
               child: const Text("Try Yourself"),
               onPressed: () {
-                ref.read(statisticsProvider.notifier).takeQuiz();
-                ref.read(quizProvider.notifier).state = topic.quiz ?? Quiz(quizId: 0,title: "");
+                ref.watch(statisticsStateProvider);
+                ref.watch(quizStateProvider);
+                ref.read(quizStateProvider.notifier).takeQuiz(ref.read(topicProvider.notifier).state.topicId);
+                
                 Navigator.pushNamed(context, '/quiz/');
                 setState(() {
                 });
@@ -78,7 +78,7 @@ class _TopicViewState extends ConsumerState<TopicView> {
                     currentSiteIndex++;
                   });
                   if (currentSiteIndex == topic.sites.length - 1) {
-                    ref.read(statisticsProvider.notifier).finishTopic();
+                    ref.read(statisticsStateProvider.notifier).finishTopic();
                   }
                 }
               },

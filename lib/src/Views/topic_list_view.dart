@@ -25,7 +25,7 @@ class _TopicListViewState extends ConsumerState<TopicListView> {
   @override
   Widget build(BuildContext context) {
     List<Topic> topics = ref.watch(topicsListProvider).value??[];
-    return topics.isNotEmpty?ListView.builder(
+    return topics.isNotEmpty ? ListView.builder(
       itemCount: topics.length,
       itemBuilder: (context, index) {
       return ListTile(

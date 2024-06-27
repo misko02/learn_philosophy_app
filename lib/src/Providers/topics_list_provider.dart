@@ -14,7 +14,7 @@ class TopicsList extends _$TopicsList {
     var box = await Hive.openBox<Topic>('Topics');
     if(box.values.isNotEmpty)  return box.values.toList();
     box.addAll(await ApiService.getTopics());
-    return box.values.toList();
+    return Future.value(box.values.toList());
   }
   
 }

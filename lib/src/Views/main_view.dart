@@ -2,10 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import '../Models/statistics/statistics.dart';
-import '../Providers/statistics_provider.dart';
-import '../Services/api_service.dart';
 import 'home_view.dart';
 import 'settings_view.dart';
 import 'statistics_view.dart';
@@ -91,10 +87,7 @@ class _MainViewState extends ConsumerState<MainView> {
             ),
             ListTile(
               title: const Text("Statistics"),
-              onTap: () async {
-                var box = await Hive.openBox<Statistics>('Statistics');
-                ref.read(statisticsProvider.notifier).updateStatistics(box.get(0) ?? await ApiService.getStatistics());
-                box.put(0, ref.watch(statisticsProvider));
+              onTap: (){
                 setState(() {
                   widget.route = "/stastics";
                 });

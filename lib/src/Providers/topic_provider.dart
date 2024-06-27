@@ -24,7 +24,7 @@ final topicProvider = StateProvider((ref) => Topic(
       content: 'Content 3'
     ),
   ],
-  quiz: ref.read(quizProvider.notifier).state
+  quiz: ref.read(quizStateProvider).value
 )
 );
 

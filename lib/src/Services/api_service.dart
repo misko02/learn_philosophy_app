@@ -1,9 +1,10 @@
-import 'dart:convert';
+import 'package:learn_philosophy_app/src/Models/question/question.dart';
 import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 import 'package:learn_philosophy_app/src/Utilities/seed_data.dart';
 
+import '../Models/quiz/quiz.dart';
 import '../Models/topic/topic.dart';
 
 class ApiService {
@@ -69,5 +70,21 @@ class ApiService {
       logger.e(e.toString());
     }
     return statistics;
+  }
+
+  static Future<Quiz> getQuizById(int id) async{
+    late Quiz quiz;
+    try {
+      final response = await dio.get('/quizzs/$id');
+      if (response.statusCode != 200) {
+        throw "Can't get quiz.";
+      } 
+      quiz = Quiz.fromJson(response.data);
+    } 
+    catch (e) {
+      quiz = SeedData.seedTopics.firstWhere((element)=> element.topicId == id).quiz ?? Quiz(quizId: 0, title: "", questions: [Question(id: 0, content: "",answers: ["","","",""], correctAnswerIndex: 0)]);
+      logger.e(e.toString());
+    }
+    return quiz;
   }
 }

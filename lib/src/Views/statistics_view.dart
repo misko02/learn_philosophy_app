@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learn_philosophy_app/src/Models/statistics/statistics.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
 
@@ -15,11 +14,10 @@ class StatisticsView extends ConsumerStatefulWidget {
 }
 
 class _StatisticsViewState extends ConsumerState<StatisticsView> {
-  final box = Hive.box<Statistics>('Statistics');
   @override
   Widget build(BuildContext context) {
-    Statistics stats = ref.watch(statisticsProvider);
-    return Center(
+    Statistics? stats = ref.watch(statisticsStateProvider).value;
+    return stats != null ? Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,6 +88,6 @@ class _StatisticsViewState extends ConsumerState<StatisticsView> {
           ),
         ],
       ),
-    );
+    ): const Center(child: CircularProgressIndicator());
   }
 }

@@ -4,6 +4,11 @@ import 'package:learn_philosophy_app/src/Models/quiz_result/quiz_result.dart';
 import 'package:learn_philosophy_app/src/Providers/quiz_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/result_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
+import 'package:logger/logger.dart';
+
+import '../Models/quiz/quiz.dart';
+
+final logger = Logger();
 
 class QuizView extends ConsumerStatefulWidget {
   const QuizView({super.key});
@@ -13,12 +18,11 @@ class QuizView extends ConsumerStatefulWidget {
 }
 
 class _QuestionViewState extends ConsumerState<QuizView> {
-  int correctAnswers = 0;
   int currentQuestionIndex = 0;
   @override
   Widget build(BuildContext context) {
-   final quiz = ref.read(quizProvider.notifier).state;
-    return Scaffold(
+   late Quiz? quiz = ref.watch(quizStateProvider).value; 
+    return quiz != null? Scaffold(
       appBar: AppBar(
         leading: ButtonBar(
           children: [
@@ -50,13 +54,12 @@ class _QuestionViewState extends ConsumerState<QuizView> {
                         if (index == quiz.questions[currentQuestionIndex].correctAnswerIndex) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Correct!')));
+                            ref.read(statisticsStateProvider.notifier).addCorrectAnswer();
                             quiz.result?.correctAnswers++;
-                            ref.read(statisticsProvider.notifier).addCorrectAnswer();
-                            correctAnswers++;
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Incorrect!')));
-                            ref.read(statisticsProvider.notifier).addWrongAnswer();
+                            ref.read(statisticsStateProvider.notifier).addWrongAnswer();
                             quiz.result?.wrongAnswers++;
                         }
                         if (currentQuestionIndex < quiz.questions.length - 1) {
@@ -66,9 +69,10 @@ class _QuestionViewState extends ConsumerState<QuizView> {
                         } 
                         else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('You got $correctAnswers out of ${quiz.questions.length} correct!')));
-                            ref.read(statisticsProvider.notifier).passQuiz();
+                            SnackBar(content: Text('You got ${quiz.result?.correctAnswers} out of ${quiz.questions.length} correct!')));
+                            ref.read(statisticsStateProvider.notifier).passQuiz();
                             ref.read(resultProvider.notifier).state = quiz.result?? QuizResult(correctAnswers: 0, wrongAnswers: 0);
+                            
                             Navigator.pushNamed(context, '/summary/');
                         }
                       },
@@ -79,6 +83,6 @@ class _QuestionViewState extends ConsumerState<QuizView> {
           ),
         ),
       ),
-      );
+      ): const Center(child: CircularProgressIndicator());
   }
 }
