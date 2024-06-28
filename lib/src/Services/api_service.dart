@@ -59,7 +59,7 @@ class ApiService {
   static Future<Statistics> getStatistics() async {
     late Statistics statistics;
     try {
-      final response = await dio.get('/statistics');
+      final response = await dio.get('/statistics/3fa85f64-5717-4562-b3fc-2c963f66afa6'); //test user id
       if (response.statusCode != 200) {
         throw "Can't get statistics.";
       } 
@@ -75,7 +75,7 @@ class ApiService {
   static Future<Quiz> getQuizById(int id) async{
     late Quiz quiz;
     try {
-      final response = await dio.get('/quizzs/$id');
+      final response = await dio.get('/Quizs/$id');
       if (response.statusCode != 200) {
         throw "Can't get quiz.";
       } 

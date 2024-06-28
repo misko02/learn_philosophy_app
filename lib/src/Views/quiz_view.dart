@@ -22,7 +22,7 @@ class _QuestionViewState extends ConsumerState<QuizView> {
   @override
   Widget build(BuildContext context) {
    late Quiz? quiz = ref.watch(quizStateProvider).value; 
-    return quiz != null? Scaffold(
+    return quiz != null && quiz.questions.isNotEmpty? Scaffold(
       appBar: AppBar(
         leading: ButtonBar(
           children: [

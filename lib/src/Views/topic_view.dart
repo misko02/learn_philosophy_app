@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_philosophy_app/src/Models/topic/topic.dart';
 import 'package:learn_philosophy_app/src/Providers/statistics_provider.dart';
 import 'package:learn_philosophy_app/src/Providers/topic_provider.dart';
 
@@ -17,8 +17,8 @@ class _TopicViewState extends ConsumerState<TopicView> {
   int currentSiteIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final topic = ref.read(topicProvider.notifier).state;
-    return Scaffold(
+    late Topic? topic = ref.watch(topicStateProvider).value;
+    return topic != null && topic.sites.isNotEmpty? Scaffold(
       appBar: AppBar(
         leading: ButtonBar(
           children: [
@@ -63,7 +63,7 @@ class _TopicViewState extends ConsumerState<TopicView> {
               onPressed: () {
                 ref.watch(statisticsStateProvider);
                 ref.watch(quizStateProvider);
-                ref.read(quizStateProvider.notifier).takeQuiz(ref.read(topicProvider.notifier).state.topicId);
+                ref.read(quizStateProvider.notifier).takeQuiz(ref.read(topicStateProvider).value!.topicId);
                 
                 Navigator.pushNamed(context, '/quiz/');
                 setState(() {
@@ -86,6 +86,6 @@ class _TopicViewState extends ConsumerState<TopicView> {
           ],
         ),
       )
-    );
+    ): const Center(child: CircularProgressIndicator());
   }
 }

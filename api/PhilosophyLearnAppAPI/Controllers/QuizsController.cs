@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using PhilosophyLearnAppAPI.Data;
 using PhilosophyLearnAppAPI.Models;
 
@@ -32,12 +33,13 @@ namespace PhilosophyLearnAppAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Quiz>> GetQuiz(int id)
         {
-            var quiz = await _context.Quiz.FindAsync(id);
+            var quiz = await _context.Quiz.Where(q=> q.TopicId == id).FirstAsync();
 
             if (quiz == null)
             {
                 return NotFound();
             }
+            quiz.Questions.AddRange(_context.Question.Where(q => q.QuizId == quiz.QuizId).ToList());
 
             return quiz;
         }

@@ -89,7 +89,7 @@ class StatisticsState extends _$StatisticsState {
       var box = Hive.box<Statistics>('Statistics');
       state = AsyncData(box.get('stats')??Statistics());
       state.value?.topicsFinished++;
-      box.put('stats',state.value!);
+      box.put('stats',state.value??Statistics());
     }
     on Exception catch(e)
     {

@@ -37,6 +37,7 @@ namespace PhilosophyLearnAppAPI.Controllers
                 return NotFound();
             }
             topic.Sites.AddRange(_context.Site.Where(s => s.TopicId == id).ToList());
+            topic.Quiz.QuizId = _context.Quiz.Where(q => q.TopicId == id).FirstOrDefault().QuizId;
             return topic;
         }
 

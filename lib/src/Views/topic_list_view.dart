@@ -31,10 +31,9 @@ class _TopicListViewState extends ConsumerState<TopicListView> {
       return ListTile(
         title: Text(topics[index].title, style: const TextStyle(fontSize: 24, color: Colors.white)),
         subtitle: Text(topics[index].description, style: const TextStyle(fontSize: 18, color: Colors.white)),
-        onTap: () async {
-          var box = await Hive.openBox<Topic>('Topics');
-          ref.read(topicProvider.notifier).state = box.get(topics[index].topicId) ?? await ApiService.getTopicById(topics[index].topicId);
-          box.put(topics[index].topicId, ref.read(topicProvider.notifier).state);
+        onTap: () {
+          ref.watch(topicStateProvider);
+          ref.read(topicStateProvider.notifier).getTopic(topics[index].topicId);
           Navigator.pushNamed(context, '/topic/');
         },
       );
